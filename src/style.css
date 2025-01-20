@@ -40,11 +40,13 @@ img {
 }
 
 header {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(242, 239, 233, 0.6);
+  background: rgb(242, 239, 233);
   padding: 1.2rem;
+  z-index: 3;
 }
 
 .paper-overlay {
@@ -67,7 +69,25 @@ main {
   position: absolute;
   left: 0;
   width: 100%;
+  z-index: -3;
+  transform: scaleX(-1);
+}
+
+.timeline-container,
+.footer {
+  position: relative;
+}
+
+.background {
+  position: absolute;
+  inset: 0%;
+  width: 100%;
   z-index: -2;
+  background-color: #fff;
+}
+
+.reverse {
+  transform: scaleY(-1);
 }
 
 .timeline-wrapper {
@@ -135,4 +155,83 @@ main {
   font-weight: 300;
   line-height: 135%;
   margin: -0.5rem;
+}
+
+.books-container,
+.map-container,
+.footer,
+.printing-container,
+.timeline-container {
+  margin-top: 4rem;
+}
+
+button {
+  width: 100%;
+  height: 3rem;
+  padding: 0.625rem;
+  background-color: #333331;
+  border: none;
+  color: #f2efe9;
+  font-family: "Jost";
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+
+a {
+  color: #f2efe9;
+  font-family: "Jost";
+  font-size: 1.2rem;
+  font-weight: 300;
+  text-decoration: none;
+}
+
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(242, 239, 233);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.menu-nav ul {
+  list-style: none;
+  padding: 0;
+  text-align: center;
+}
+
+.menu-nav li {
+  margin: 2rem 0;
+}
+
+.menu-nav a {
+  text-decoration: none;
+  font-size: 1.5rem;
+  color: #333331;
+  transition: color 0.3s;
+}
+
+.menu-nav a:hover {
+  color: #f39c12;
+}
+
+.menu-overlay.open {
+  display: flex;
+}
+
+.no-scroll {
+  overflow: hidden;
+  height: 100%;
+}
+
+.country {
+  transition: fill 1s;
+}
+
+.country:hover {
+  fill: black;
 }
