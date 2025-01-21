@@ -8,6 +8,10 @@
   color: #333331;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
 }
@@ -49,7 +53,7 @@ header {
   z-index: 3;
 }
 
-nav {
+header nav {
   display: none;
 }
 
@@ -170,6 +174,7 @@ main {
 
 button {
   width: 100%;
+  max-width: 425px;
   height: 3rem;
   padding: 0.625rem;
   background-color: #333331;
@@ -239,6 +244,14 @@ a {
   fill: black;
 }
 
+.hero-container img,
+.printing-container img,
+.books-container img,
+.footer img {
+  max-width: 400px;
+  width: 100%;
+}
+
 .hero-container,
 .printing-container,
 .books-container,
@@ -246,6 +259,7 @@ a {
   flex-direction: column;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 @media (min-width: 834px) {
@@ -253,13 +267,14 @@ a {
     display: none;
   }
 
-  nav {
-    display: block;
+  header nav {
+    display: flex;
   }
 
   ul {
     display: flex;
     list-style: none;
+    align-items: center;
   }
 
   li {
@@ -316,5 +331,123 @@ a {
 
   .footer {
     flex-direction: row-reverse;
+  }
+}
+
+@media (min-width: 1280px) {
+  main {
+    margin: 2rem 5rem;
+  }
+  header {
+    padding: 1.2rem 5rem;
+  }
+  ul {
+    align-items: center;
+  }
+  ul button {
+    min-width: 10rem;
+  }
+
+  .hero-container div {
+    max-width: 465px;
+  }
+
+  .hero-container {
+    gap: 9.375rem;
+    align-items: center;
+  }
+
+  h1 {
+    font-size: 2.4rem;
+  }
+
+  .hero-container img {
+    max-width: 460px;
+  }
+
+  .text {
+    width: 350px;
+  }
+
+  .timeline-item {
+    display: flex;
+    gap: 1.875rem;
+  }
+
+  .timeline-container {
+    gap: 3.75rem;
+  }
+
+  .timeline-container h1 {
+    max-width: 560px;
+    margin-bottom: 2rem;
+  }
+
+  .left img {
+    max-width: 495px;
+  }
+
+  h2 {
+    margin-top: 0.5rem;
+  }
+
+  .date {
+    max-width: 85px;
+  }
+
+  .printing-container {
+    align-items: center;
+    gap: 1.875rem;
+  }
+
+  .printing-container h1 {
+    max-width: 530px;
+  }
+
+  .printing-container p,
+  .books-container p {
+    max-width: 500px;
+  }
+
+  .printing-container img {
+    max-height: 590px;
+  }
+  .counter-container {
+    flex-wrap: nowrap;
+  }
+
+  .books-container h1 {
+    max-width: 588px;
+  }
+  button {
+    max-width: 315px;
+  }
+
+  .books-container img {
+    max-width: 440px;
+  }
+
+  .books-container {
+    gap: 5.625rem;
+  }
+
+  .map-container h1 {
+    max-width: 735px;
+  }
+  .map-container p {
+    max-width: 620px;
+  }
+
+  .footer {
+    gap: 3.75rem;
+  }
+
+  .footer h1,
+  .footer p {
+    max-width: 482px;
+  }
+
+  .footer img {
+    max-height: 540px;
   }
 }
