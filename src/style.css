@@ -49,6 +49,10 @@ header {
   z-index: 3;
 }
 
+nav {
+  display: none;
+}
+
 .paper-overlay {
   z-index: -1;
   opacity: 0.25;
@@ -93,7 +97,6 @@ main {
 .timeline-wrapper {
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
   display: flex;
   width: 100%;
 }
@@ -234,4 +237,84 @@ a {
 
 .country:hover {
   fill: black;
+}
+
+.hero-container,
+.printing-container,
+.books-container,
+.footer {
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+}
+
+@media (min-width: 834px) {
+  .hamburger {
+    display: none;
+  }
+
+  nav {
+    display: block;
+  }
+
+  ul {
+    display: flex;
+    list-style: none;
+  }
+
+  li {
+    margin: 0 15px;
+  }
+
+  nav a {
+    color: #333331;
+  }
+
+  .hero-container {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
+  .hero-container img,
+  .printing-container img,
+  .books-container img,
+  .footer img {
+    min-width: 390px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  p {
+    font-size: 1rem;
+    min-width: 362px;
+  }
+
+  .timeline-container {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
+  .timeline {
+    flex-direction: column;
+  }
+
+  .printing-container,
+  .books-container {
+    flex-direction: row;
+  }
+  .counter-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .map-container h1,
+  .map-container p {
+    max-width: 590px;
+  }
+
+  .footer {
+    flex-direction: row-reverse;
+  }
 }
