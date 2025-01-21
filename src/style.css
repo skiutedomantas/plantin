@@ -69,16 +69,25 @@ header nav {
   inset: 0%;
 }
 
-main {
+.margin {
   margin: 1.375rem;
 }
 
 .paper-edge {
   position: absolute;
+  top: -3%;
   left: 0;
   width: 100%;
   z-index: -3;
   transform: scaleX(-1);
+}
+
+.bottom {
+  bottom: -3%;
+}
+
+.higher {
+  top: -2%;
 }
 
 .timeline-container,
@@ -185,6 +194,12 @@ button {
   font-weight: 300;
 }
 
+button:hover {
+  background-color: #deb351;
+  color: #333331;
+  cursor: pointer;
+}
+
 a {
   color: #f2efe9;
   font-family: "Jost";
@@ -237,17 +252,34 @@ a {
 }
 
 .country {
+  fill: rgba(200, 200, 200, 0.2);
+  stroke: #000;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 0.5px;
   transition: fill 1s;
 }
 
-.country:hover {
+.golden {
+  fill: #f39c12;
+}
+
+.available {
+  fill: white;
+}
+
+.available:hover {
   fill: black;
+}
+
+.available:active {
+  fill: #f39c12;
 }
 
 .hero-container img,
 .printing-container img,
 .books-container img,
-.footer img {
+.museum-image {
   max-width: 400px;
   width: 100%;
 }
@@ -262,9 +294,33 @@ a {
   align-items: center;
 }
 
+.left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.left div {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
 @media (min-width: 834px) {
   .hamburger {
     display: none;
+  }
+
+  .paper-edge {
+    top: -2%;
+  }
+
+  .bottom {
+    bottom: -2%;
+  }
+
+  .higher {
+    top: -10%;
   }
 
   header nav {
@@ -303,12 +359,16 @@ a {
 
   p {
     font-size: 1rem;
-    min-width: 362px;
+  }
+
+  .left div p {
+    min-width: 0px;
   }
 
   .timeline-container {
     display: flex;
     flex-direction: row-reverse;
+    justify-content: center;
   }
 
   .timeline {
@@ -332,12 +392,123 @@ a {
   .footer {
     flex-direction: row-reverse;
   }
+
+  .books-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f2efe9;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  .content {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .items-list {
+    flex: 1;
+    color: white;
+  }
+
+  .items-list ul {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    align-items: start;
+    gap: 3rem;
+    padding: 0;
+  }
+
+  .items-list li {
+    cursor: pointer;
+    margin-bottom: 10px;
+    transition: color 0.3s;
+    color: #333331;
+    font-family: "Inria Serif";
+    font-size: 2rem;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 135%;
+  }
+
+  .items-list li:hover {
+    color: #ffd700;
+  }
+
+  .carousel {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .carousel-images {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .carousel-image {
+    display: none;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  .carousel-image.active {
+    display: block;
+  }
+
+  .closing-button {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+  }
+
+  #svg-container {
+    position: relative;
+  }
+
+  #info-box {
+    position: absolute;
+    right: 0;
+    top: 40%;
+    max-width: 300px;
+    background-color: #333331e4;
+    color: #f2efe9;
+    padding: 2rem;
+    border-radius: 5px;
+  }
+
+  #info-box h1 {
+    color: #f2efe9;
+  }
 }
 
 @media (min-width: 1280px) {
-  main {
+  .margin {
     margin: 2rem 5rem;
   }
+
+  .paper-edge {
+    top: -4%;
+  }
+
+  .bottom {
+    bottom: -4%;
+  }
+
+  .higher {
+    top: -9%;
+  }
+
   header {
     padding: 1.2rem 5rem;
   }
@@ -447,7 +618,27 @@ a {
     max-width: 482px;
   }
 
+  .left div h2 {
+    font-family: "Inria Serif";
+    font-size: 3.125rem;
+    font-weight: bold;
+  }
+
+  .left div p {
+    font-family: "Inria Serif";
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+
   .footer img {
     max-height: 540px;
+  }
+
+  .content {
+    gap: 5rem;
+  }
+
+  #info-box {
+    max-width: 400px;
   }
 }
