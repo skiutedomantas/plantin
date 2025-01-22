@@ -153,6 +153,11 @@ const countryData = {
 
 const showInfo = (event) => {
   const countryName = event.target.dataset.country;
+
+  countries.forEach((country) => country.classList.remove("golden"));
+
+  event.target.classList.add("golden"); 
+
   if (countryData[countryName]) {
     let container = document.querySelector("#info-box");
     

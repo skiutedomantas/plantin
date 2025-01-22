@@ -261,7 +261,7 @@ a {
 }
 
 .golden {
-  fill: #f39c12;
+  fill: #f39c12 !important;
 }
 
 .available {
@@ -270,10 +270,6 @@ a {
 
 .available:hover {
   fill: black;
-}
-
-.available:active {
-  fill: #f39c12;
 }
 
 .hero-container img,
@@ -383,6 +379,7 @@ a {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    gap: 6rem;
   }
   .map-container h1,
   .map-container p {
@@ -585,6 +582,7 @@ a {
   }
   .counter-container {
     flex-wrap: nowrap;
+    gap: 18rem;
   }
 
   .books-container h1 {
