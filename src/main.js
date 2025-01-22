@@ -195,19 +195,18 @@ countries.forEach((country) => {
 
 mm.add("(max-width: 833px)", () => {
   gsap.to(timeline, {
-    x: () => -(timelineWidth - window.innerWidth +100), 
+    x: () => -(timelineWidth - window.innerWidth + 100),
     ease: "none",
     scrollTrigger: {
       trigger: timelineWrapper,
       start: "top top",
-      end: () => `+=${timelineWidth}`, 
+      end: () => `+=${timelineWidth}`,
       scrub: true,
-      pin: ".timeline-container", 
+      pin: ".timeline-container",
     },
   });
 
-
-  gsap.to(".left img", {
+  gsap.to(images, {
     scrollTrigger: {
       trigger: timelineWrapper,
       start: "top top",
@@ -216,7 +215,16 @@ mm.add("(max-width: 833px)", () => {
       onUpdate: (self) => {
         const progress = self.progress;
         const index = Math.floor(progress * (images.length - 1));
-        document.querySelector(".left img").src = images[index];
+
+        images.forEach((img, i) => {
+          if (i === index) {
+            img.classList.add("visible");
+            img.classList.remove("hidden");
+          } else {
+            img.classList.add("hidden");
+            img.classList.remove("visible");
+          }
+        });
       },
     },
   });
