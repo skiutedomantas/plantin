@@ -26,6 +26,7 @@ const prevButton = document.querySelector(".carousel-btn.prev");
 const nextButton = document.querySelector(".carousel-btn.next");
 const mobileProgressIndicator = document.querySelector(".mobile-progress-indicator");
 const timelineContainer = document.querySelector('.right');
+const images = document.querySelectorAll('.left img');
 const containerHeight = timelineContainer.offsetHeight;
 const movementStep = containerHeight / 3;
 let currentIndex = 0;
@@ -34,11 +35,6 @@ const mm = gsap.matchMedia();
 const mobileBooksOverlay = document.querySelector("#mobile-books-overlay"); 
 const isMobile = () => window.matchMedia("(max-width: 833px)").matches;
 const body = document.body;
-const images = [
- '/src/assets/press1.png', 
- '/src/assets/press2.png', 
- '/src/assets/press3.png', 
-];
 const booksInfo = [
   {
     title: "Biblia Polyglotta",
@@ -237,7 +233,7 @@ mm.add("(max-width: 833px)", () => {
   });
 });
 
- mm.add("(min-width: 834px)", () => {
+mm.add("(min-width: 834px)", () => {
   const timeline = gsap.timeline({
     scrollTrigger: {
       trigger: '.timeline-container',
@@ -246,18 +242,21 @@ mm.add("(max-width: 833px)", () => {
       scrub: true,
     },
   });
-  
-  
-  images.forEach((image, index) => {
+
+
+  images.forEach((_, index) => {
     timeline.to('.left', {
       y: `${movementStep * 0.7 * (index + 1)}px`, 
       ease: "linear",
     })
     .call(() => {
-      document.querySelector('.left img').src = image;
-    })
+      images.forEach((img, imgIndex) => {
+        img.classList.toggle('visible', imgIndex === index);
+        img.classList.toggle('hidden', imgIndex !== index);
+      });
+    });
   });
-  
+
   gsap.to('.left h2', {
     scrollTrigger: {
       trigger: '.timeline-container',
@@ -267,10 +266,10 @@ mm.add("(max-width: 833px)", () => {
       onUpdate: (self) => {
         const value = Math.round(self.progress * 22);
         document.querySelector('.left h2').textContent = value;
-      }
-    }
+      },
+    },
   });
- });
+});
 
 const updateMobileCarousel = (index) => {
   const imagePath = `src/assets/press${index + 1}.png`;
