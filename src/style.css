@@ -90,7 +90,6 @@ header nav {
   top: -2%;
 }
 
-.timeline-container,
 .footer {
   position: relative;
 }
@@ -107,21 +106,32 @@ header nav {
   transform: scaleY(-1);
 }
 
-.timeline-wrapper {
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
+.timeline-container {
   display: flex;
-  width: 100%;
+  flex-direction: column;
+  position: relative;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.timeline-wrapper {
+  display: flex;
+  overflow: hidden;
 }
 
 .timeline {
   display: flex;
-  gap: 5rem;
+  flex-direction: row;
+  gap: 20px;
+  width: max-content;
 }
 
 .timeline-item {
-  flex-shrink: 0;
-  scroll-snap-align: start;
+  height: fit-content;
 }
 
 .date {
@@ -290,16 +300,97 @@ a {
   align-items: center;
 }
 
-.left {
+#mobile-books-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  background-color: #f2efe9;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.mobile-carousel-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 10px;
+}
+
+.mobile-carousel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.mobile-carousel-image {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.mobile-carousel-image.active {
+  opacity: 1;
+}
+
+.carousel-buttons {
+  display: flex;
+  gap: 2rem;
+}
+
+.carousel-btn {
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  width: 200px;
+}
+
+.mobile-progress-indicator {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.mobile-progress-indicator .dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin: 0 5px;
+  background: gray;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.mobile-progress-indicator .dot.active {
+  background: #f39c12;
+}
+
+.mobile-book-info {
+  color: #333331;
+  margin: 1rem;
+}
+
+.books-overlay {
+  display: none;
+}
+
+.mobile-closing-button,
+.closing-button {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  width: 10%;
 }
 
 .left div {
-  display: flex;
   gap: 1rem;
+  display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 @media (min-width: 834px) {
@@ -361,6 +452,22 @@ a {
     min-width: 0px;
   }
 
+  .left {
+    height: fit-content;
+  }
+
+  .timeline-wrapper {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    display: flex;
+    width: 100%;
+  }
+
+  .timeline-item {
+    flex-shrink: 0;
+    scroll-snap-align: start;
+  }
+
   .timeline-container {
     display: flex;
     flex-direction: row-reverse;
@@ -368,6 +475,8 @@ a {
   }
 
   .timeline {
+    display: flex;
+    gap: 5rem;
     flex-direction: column;
   }
 
@@ -461,12 +570,6 @@ a {
 
   .carousel-image.active {
     display: block;
-  }
-
-  .closing-button {
-    position: absolute;
-    top: 5%;
-    left: 5%;
   }
 
   #svg-container {

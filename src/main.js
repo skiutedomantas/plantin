@@ -5,22 +5,53 @@ import TextPlugin from 'gsap/TextPlugin';
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(TextPlugin);
 
-
 const hamburger = document.querySelector('.hamburger');
 const menuOverlay = document.querySelector('.menu-overlay');
 const menuLinks = document.querySelectorAll('.menu-nav a');
 const counters = document.querySelectorAll('.counter h2');
 const exploreButton = document.querySelector("#explore-button");
 const closeButton = document.querySelector('.closing-button')
+const mobileClosingButton = document.querySelector('.mobile-closing-button')
 const booksOverlay = document.getElementById("books-overlay");
 const books = document.querySelectorAll(".carousel-image");
 const items = document.querySelectorAll(".items-list li");
-
+const countries = document.querySelectorAll(".available");
+const svgContainer = document.querySelector("#svg-container");
+const timelineWrapper = document.querySelector(".timeline-wrapper");
+const timeline = document.querySelector(".timeline");
+const mobileCarouselImage = document.querySelector(".mobile-carousel img");
+const mobileBookTitle = document.querySelector(".mobile-book-title");
+const mobileBookDescription = document.querySelector(".mobile-book-description");
+const prevButton = document.querySelector(".carousel-btn.prev");
+const nextButton = document.querySelector(".carousel-btn.next");
+const mobileProgressIndicator = document.querySelector(".mobile-progress-indicator");
+const timelineContainer = document.querySelector('.right');
+const containerHeight = timelineContainer.offsetHeight;
+const movementStep = containerHeight / 3;
+let currentIndex = 0;
+const timelineWidth = timeline.scrollWidth;
+const mm = gsap.matchMedia();
+const mobileBooksOverlay = document.querySelector("#mobile-books-overlay"); 
+const isMobile = () => window.matchMedia("(max-width: 833px)").matches;
 const body = document.body;
 const images = [
  '/src/assets/Press3.png', 
  '/src/assets/Press2.png', 
  '/src/assets/Press3.png', 
+];
+const booksInfo = [
+  {
+    title: "Biblia Polyglotta",
+    description: "Printed between 1568 and 1572, this eight-volume work featured the Bible in multiple languages, including Hebrew, Greek, Latin, and Aramaic. It was a masterpiece of Renaissance scholarship and a key tool for biblical studies.",
+  },
+  {
+    title: "Hebrew Bible",
+    description: "Plantin’s Hebrew Bible was a milestone for Hebrew typography, designed for scholars and religious leaders. Its high-quality print and detailed type made it popular across Europe.",
+  },
+  {
+    title: "Corpus Juris Canonici",
+    description: "This legal text was a major work on canon law, showcasing Plantin’s role in publishing works of intellectual and societal importance.",
+  },
 ];
 
 const toggleMenu = () => {
@@ -49,7 +80,9 @@ const animateCounter = (counter) => {
         trigger: '.printing-container',
         start:"center center",
         toggleActions: "play reset play reset",
+        markers:true,
       },
+      
       snap: { textContent: 1 },
     }
   );
@@ -57,43 +90,12 @@ const animateCounter = (counter) => {
  counters.forEach(counter => animateCounter(counter));
 
 
-
-const timeline = gsap.timeline({
-  scrollTrigger: {
-    trigger: '.timeline-container',
-    start: "top top",
-    end: "bottom bottom",
-    scrub: true,
-  },
-});
-
-
-images.forEach((image, index) => {
-  timeline.to('.left', {
-    y: `${22 * (index + 1)}%`, 
-    ease: "linear",
-  })
-  .call(() => {
-    document.querySelector('.left img').src = image;
-  })
-});
-
-gsap.to('.left h2', {
-  scrollTrigger: {
-    trigger: '.timeline-container',
-    start: "top top",
-    end: "bottom bottom",
-    scrub: true,
-    onUpdate: (self) => {
-      const value = Math.round(self.progress * 22);
-      document.querySelector('.left h2').textContent = value;
-    }
-  }
-});
-
-
 const showBookOverlay = () => {
-  booksOverlay.style.display = "flex";
+  if (isMobile()) {
+    mobileBooksOverlay.style.display = "flex";
+  } else {
+    booksOverlay.style.display = "flex";
+  }
   body.classList.add('no-scroll');
   setActiveImage(0); 
 }
@@ -105,6 +107,12 @@ const hideBookOverlay = () => {
   body.classList.remove('no-scroll');
 }
 closeButton.addEventListener('click', hideBookOverlay);
+
+const hideMobileBookOverlay = () => {
+  mobileBooksOverlay.style.display = "none"; 
+  body.classList.remove('no-scroll');
+}
+mobileClosingButton.addEventListener('click', hideMobileBookOverlay);
 
 function setActiveImage(index) {
   books.forEach((img, i) => {
@@ -119,8 +127,6 @@ items.forEach((item) => {
   });
 });
 
-const countries = document.querySelectorAll(".available");
-const svgContainer = document.querySelector("#svg-container");
 
 const countryData = {
   Spain: {
@@ -148,7 +154,6 @@ const countryData = {
     description: "Plantin’s work had a huge influence in his own country, the Netherlands. His books helped shape intellectual thought, especially during the Dutch Revolt.",
   },
 };
-
 
 
 const showInfo = (event) => {
@@ -192,3 +197,118 @@ const showInfo = (event) => {
 countries.forEach((country) => {
   country.addEventListener("click", showInfo);
 });
+
+mm.add("(max-width: 833px)", () => {
+  gsap.to(timeline, {
+    x: () => -(timelineWidth - window.innerWidth +100), 
+    ease: "none",
+    scrollTrigger: {
+      trigger: timelineWrapper,
+      start: "top top",
+      end: () => `+=${timelineWidth}`, 
+      scrub: true,
+      pin: ".timeline-container", 
+    },
+  });
+
+
+  gsap.to(".left img", {
+    scrollTrigger: {
+      trigger: timelineWrapper,
+      start: "top top",
+      end: () => `+=${timelineWidth}`,
+      scrub: true,
+      onUpdate: (self) => {
+        const progress = self.progress;
+        const index = Math.floor(progress * (images.length - 1));
+        document.querySelector(".left img").src = images[index];
+      },
+    },
+  });
+
+  gsap.to(".left h2", {
+    textContent: 22,
+    roundProps: "textContent",
+    scrollTrigger: {
+      trigger: timelineWrapper,
+      start: "top top",
+      end: () => `+=${timelineWidth}`,
+      scrub: true,
+    },
+  });
+});
+
+ mm.add("(min-width: 834px)", () => {
+  const timeline = gsap.timeline({
+    scrollTrigger: {
+      trigger: '.timeline-container',
+      start: "top top",
+      end: "bottom bottom",
+      scrub: true,
+    },
+  });
+  
+  
+  images.forEach((image, index) => {
+    timeline.to('.left', {
+      y: `${movementStep * 0.7 * (index + 1)}px`, 
+      ease: "linear",
+    })
+    .call(() => {
+      document.querySelector('.left img').src = image;
+    })
+  });
+  
+  gsap.to('.left h2', {
+    scrollTrigger: {
+      trigger: '.timeline-container',
+      start: "top top",
+      end: "bottom bottom",
+      scrub: true,
+      onUpdate: (self) => {
+        const value = Math.round(self.progress * 22);
+        document.querySelector('.left h2').textContent = value;
+      }
+    }
+  });
+ });
+
+const updateMobileCarousel = (index) => {
+  const imagePath = `src/assets/press${index + 1}.png`;
+  mobileCarouselImage.src = imagePath;
+
+  mobileBookTitle.textContent = booksInfo[index].title;
+  mobileBookDescription.textContent = booksInfo[index].description;
+
+  const dots = mobileProgressIndicator.querySelectorAll(".dot");
+  dots.forEach((dot, i) => {
+    dot.classList.toggle("active", i === index);
+  });
+};
+
+prevButton.addEventListener("click", () => {
+  currentIndex = (currentIndex - 1 + booksInfo.length) % booksInfo.length; 
+  updateMobileCarousel(currentIndex);
+});
+
+nextButton.addEventListener("click", () => {
+  currentIndex = (currentIndex + 1) % booksInfo.length;
+  updateMobileCarousel(currentIndex);
+});
+
+const createProgressDots = () => {
+  booksInfo.forEach((_, index) => {
+    const dot = document.createElement("span");
+    dot.classList.add("dot");
+    if (index === 0) dot.classList.add("active"); 
+    dot.dataset.index = index;
+    dot.addEventListener("click", () => {
+      currentIndex = index;
+      updateMobileCarousel(currentIndex);
+    });
+    mobileProgressIndicator.appendChild(dot);
+  });
+};
+
+createProgressDots();
+updateMobileCarousel(currentIndex);
