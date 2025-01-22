@@ -35,9 +35,9 @@ const mobileBooksOverlay = document.querySelector("#mobile-books-overlay");
 const isMobile = () => window.matchMedia("(max-width: 833px)").matches;
 const body = document.body;
 const images = [
- '/src/assets/Press3.png', 
- '/src/assets/Press2.png', 
- '/src/assets/Press3.png', 
+ '/src/assets/press1.png', 
+ '/src/assets/press2.png', 
+ '/src/assets/press3.png', 
 ];
 const booksInfo = [
   {
@@ -80,7 +80,6 @@ const animateCounter = (counter) => {
         trigger: '.printing-container',
         start:"center center",
         toggleActions: "play reset play reset",
-        markers:true,
       },
       
       snap: { textContent: 1 },

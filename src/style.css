@@ -186,8 +186,7 @@ header nav {
 .books-container,
 .map-container,
 .footer,
-.printing-container,
-.timeline-container {
+.printing-container {
   margin-top: 4rem;
 }
 
@@ -280,6 +279,10 @@ a {
 
 .available:hover {
   fill: black;
+}
+
+.hero-container img {
+  transform: scaleX(-1);
 }
 
 .hero-container img,
@@ -594,7 +597,7 @@ a {
 
 @media (min-width: 1280px) {
   .margin {
-    margin: 2rem 5rem;
+    margin: 4rem 5rem;
   }
 
   .paper-edge {
@@ -624,6 +627,7 @@ a {
   }
 
   .hero-container {
+    margin-top: 2rem;
     gap: 9.375rem;
     align-items: center;
   }
@@ -633,7 +637,7 @@ a {
   }
 
   .hero-container img {
-    max-width: 460px;
+    max-width: 400px;
   }
 
   .text {
