@@ -280,8 +280,8 @@ mm.add("(min-width: 834px)", () => {
 });
 
 const updateMobileCarousel = (index) => {
-  // const imagePath = `src/assets/press${index + 1}.png`;
-  // mobileCarouselImage.src = imagePath;
+  const imagePath = `src/assets/press${index + 1}.png`;
+  mobileCarouselImage.src = imagePath;
 
   mobileBookTitle.textContent = booksInfo[index].title;
   mobileBookDescription.textContent = booksInfo[index].description;
