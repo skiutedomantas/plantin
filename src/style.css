@@ -396,6 +396,10 @@ a {
   justify-content: center;
 }
 
+.shadow {
+  box-shadow: rgba(0, 0, 0, 0.25) -10px 10px 20px;
+}
+
 @media (min-width: 834px) {
   .hamburger {
     display: none;
@@ -519,11 +523,6 @@ a {
     display: flex;
     align-items: center;
     gap: 2rem;
-  }
-
-  .items-list {
-    flex: 1;
-    color: white;
   }
 
   .items-list ul {
@@ -740,10 +739,127 @@ a {
   }
 
   .content {
-    gap: 5rem;
+    gap: 15rem;
   }
 
   #info-box {
     max-width: 400px;
+  }
+
+  .books-overlay .content {
+    display: flex;
+    align-items: center;
+  }
+
+  .card-container {
+    position: relative;
+  }
+
+  .cards-frame {
+    position: absolute;
+    max-height: 600px;
+    top: 15%;
+    right: 15%;
+    z-index: -1;
+  }
+
+  .card {
+    width: 300px;
+    height: 455px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 2500px;
+    border-radius: 30px;
+  }
+
+  .cover-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .wrapper {
+    transition: all 0.5s;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+    background: #000;
+    border-radius: 5px;
+  }
+  .wrapper img {
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
+      rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  }
+
+  .card:hover .wrapper {
+    box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+  }
+
+  .wrapper::before,
+  .wrapper::after {
+    content: "";
+    opacity: 0;
+    width: 100%;
+    height: 80px;
+    transition: all 0.5s;
+    border-radius: 5px;
+    position: absolute;
+    left: 0;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
+      □ rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  }
+  .wrapper::before {
+    top: 0;
+    height: 100%;
+    background-image: linear-gradient(
+      to top,
+      transparent 46%,
+      Orgba(12, 13, 19, 0.5) 68%,
+      ☐ rgba(12, 13, 19) 97%
+    );
+  }
+
+  .wrapper::after {
+    bottom: 0;
+    opacity: 1;
+    background-image: linear-gradient(
+      to bottom,
+      transparent 46%,
+      ☐ rgba(12, 13, 19, 0.5) 68%,
+      ☐ rgba(12, 13, 19) 97%
+    );
+  }
+
+  .card:hover .wrapper::before,
+  .wrapper::after {
+    opacity: 1;
+  }
+
+  .card:hover .cover-image {
+    opacity: 0.3;
+  }
+
+  .main-image {
+    width: 80%;
+    opacity: 0;
+    transition: all 0.5s;
+    filter: drop-shadow (2px 2px 2px #000);
+    position: absolute;
+    z-index: -1;
+    border-radius: 5px;
+  }
+
+  .card:hover .main-image {
+    opacity: 1;
+    transform: translate3d(12%, 0%, 700px);
+  }
+
+  .card {
+    display: none;
+  }
+
+  .card.visible {
+    display: block;
   }
 }

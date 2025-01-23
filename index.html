@@ -34,7 +34,7 @@
     </div>
     <main>
       <div id="home" class="hero-container">
-        <img src="src/assets/hero.jpg" alt="" />
+        <img class="shadow" src="src/assets/hero.jpg" alt="" />
         <div class="margin">
           <h1>Every big dream starts with a small step.</h1>
           <p>
@@ -210,27 +210,32 @@
               <li data-image-index="2">Corpus Juris Canonici</li>
             </ul>
           </div>
-          <div class="carousel">
-            <div class="carousel-images">
-              <img
-                src="src/assets/script1.jpg"
-                alt="Image 1"
-                class="carousel-image"
-              />
-              <img
-                src="src/assets/script2.png"
-                alt="Image 2"
-                class="carousel-image"
-              />
-              <img
-                src="src/assets/script3.png"
-                alt="Image 3"
-                class="carousel-image"
-              />
+          <div class="cards">
+            <img class="cards-frame shadow" src="src/assets/frame.png" alt="" />
+            <div class="card-container">
+              <div class="card visible">
+                <div class="wrapper">
+                  <img src="src/assets/script1.jpg" class="cover-image" />
+                </div>
+                <img src="src/assets/script1.jpg" class="main-image" />
+              </div>
+              <div class="card">
+                <div class="wrapper">
+                  <img src="src/assets/script2.png" class="cover-image" />
+                </div>
+                <img src="src/assets/script2.png" class="main-image" />
+              </div>
+              <div class="card">
+                <div class="wrapper">
+                  <img src="src/assets/script3.png" class="cover-image" />
+                </div>
+                <img src="src/assets/script3.png" class="main-image" />
+              </div>
             </div>
           </div>
         </div>
       </div>
+
       <div id="mobile-books-overlay" class="mobile-books-overlay">
         <button class="mobile-closing-button"></button>
         <div class="mobile-carousel-container">

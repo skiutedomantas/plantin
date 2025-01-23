@@ -13,8 +13,8 @@ const exploreButton = document.querySelector("#explore-button");
 const closeButton = document.querySelector('.closing-button')
 const mobileClosingButton = document.querySelector('.mobile-closing-button')
 const booksOverlay = document.getElementById("books-overlay");
-const books = document.querySelectorAll(".carousel-image");
-const items = document.querySelectorAll(".items-list li");
+const listItems = document.querySelectorAll('.items-list li');
+const cards = document.querySelectorAll('.card');
 const countries = document.querySelectorAll(".available");
 const svgContainer = document.querySelector("#svg-container");
 const timelineWrapper = document.querySelector(".timeline-wrapper");
@@ -113,18 +113,19 @@ const hideMobileBookOverlay = () => {
 }
 mobileClosingButton.addEventListener('click', hideMobileBookOverlay);
 
-function setActiveImage(index) {
-  books.forEach((img, i) => {
-    img.classList.toggle("active", i === index); 
-  });
-}
 
-items.forEach((item) => {
-  item.addEventListener("click", () => {
-    const imageIndex = parseInt(item.getAttribute("data-image-index"));
-    setActiveImage(imageIndex);
+listItems.forEach((item, index) => {
+  item.addEventListener('click', () => {
+    cards.forEach((card, cardIndex) => {
+      if (index === cardIndex) {
+        card.classList.add('visible'); // Show the corresponding card
+      } else {
+        card.classList.remove('visible'); // Hide others
+      }
+    });
   });
 });
+
 
 
 const countryData = {
