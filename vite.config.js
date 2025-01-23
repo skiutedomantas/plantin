@@ -4,7 +4,7 @@ import { imagetools } from 'vite-imagetools'
 
 export default defineConfig({
   base: '/plantin/',
-  plugins: [imagetools()],
+  // plugins: [imagetools()],
   server: {
     host: '0.0.0.0',
     port: 3000,
