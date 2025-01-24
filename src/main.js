@@ -3,6 +3,8 @@ import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import TextPlugin from 'gsap/TextPlugin';
 import lottie from 'lottie-web';
+import printingData from "./animation/printing.json";
+import bookData from "./animation/book.json";
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(TextPlugin);
 
@@ -68,7 +70,7 @@ lottie.loadAnimation({
   renderer: "svg", 
   loop: true, 
   autoplay: true, 
-  path: "src/animation/printing.json", 
+  path: printingData,
 });
 
 
@@ -77,7 +79,7 @@ lottie.loadAnimation({
   renderer: "svg", 
   loop: true, 
   autoplay: true, 
-  path: "src/animation/book.json", 
+  path: bookData, 
 });
 
 hamburger.addEventListener('click', toggleMenu);
