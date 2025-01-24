@@ -68,7 +68,7 @@ lottie.loadAnimation({
   renderer: "svg", 
   loop: true, 
   autoplay: true, 
-  path: "/src/animation/printing.json", 
+  path: "src/animation/printing.json", 
 });
 
 
@@ -77,7 +77,7 @@ lottie.loadAnimation({
   renderer: "svg", 
   loop: true, 
   autoplay: true, 
-  path: "/src/animation/book.json", 
+  path: "src/animation/book.json", 
 });
 
 hamburger.addEventListener('click', toggleMenu);
