@@ -289,16 +289,25 @@ a {
   fill: black;
 }
 
+.button-link {
+  background-color: #333331;
+  padding: 0.8rem 2rem;
+  border: none;
+  color: #f2efe9;
+}
+
 .hero-container img {
   transform: scaleX(-1);
 }
 
 .hero-container img,
-.printing-container img,
-.books-container img,
 .museum-image {
   max-width: 400px;
   width: 100%;
+}
+
+.museum-image {
+  margin-top: 2rem;
 }
 
 .hero-container,
@@ -395,6 +404,7 @@ a {
   top: 5%;
   left: 5%;
   width: 10%;
+  z-index: 2;
 }
 
 .left div {
@@ -404,7 +414,68 @@ a {
   justify-content: center;
 }
 
+.shadow {
+  box-shadow: rgba(0, 0, 0, 0.25) -10px 10px 20px;
+}
+
+.shadow-side {
+  box-shadow: rgba(0, 0, 0, 0.25) 10px 10px 20px;
+}
+
+.printing-animation {
+  max-width: 250px;
+}
+
+.book-animation {
+  max-width: 400px;
+}
+
+.printing-animation-container,
+.book-animation-container,
+.footer-container {
+  position: relative;
+  margin: 2.5rem 0;
+}
+
+.frame-side {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  max-width: 350px;
+}
+
 @media (min-width: 834px) {
+  .museum-image {
+    max-width: 400px;
+    margin-right: 2rem;
+  }
+  .printing-container-text {
+    max-width: 400px;
+  }
+  .printing-animation {
+    min-width: 250px;
+  }
+
+  .book-animation {
+    min-width: 340px;
+  }
+
+  .frame-side {
+    max-width: 350px;
+    transform: translate(-50%, -50%) rotate(90deg) scaleY(-1);
+  }
+
+  .wider-frame {
+    max-width: 380px;
+    transform: translate(-50%, -50%) rotate(90deg) scaleY(-1);
+  }
+
+  .not-rotated {
+    transform: translate(-50%, -50%);
+  }
+
   .hamburger {
     display: none;
   }
@@ -442,13 +513,11 @@ a {
   .hero-container {
     display: flex;
     flex-direction: row-reverse;
+    gap: 3rem;
   }
 
-  .hero-container img,
-  .printing-container img,
-  .books-container img,
-  .footer img {
-    min-width: 390px;
+  .hero-container img {
+    min-width: 300px;
   }
 
   h1 {
@@ -494,6 +563,8 @@ a {
   .printing-container,
   .books-container {
     flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
   }
   .counter-container {
     flex-direction: row;
@@ -527,11 +598,6 @@ a {
     display: flex;
     align-items: center;
     gap: 2rem;
-  }
-
-  .items-list {
-    flex: 1;
-    color: white;
   }
 
   .items-list ul {
@@ -601,9 +667,139 @@ a {
   #info-box h1 {
     color: #f2efe9;
   }
+
+  .card-container {
+    position: absolute;
+    top: 50%;
+    transform: translate(22%, -50%);
+  }
+
+  .cards-frame {
+    position: relative;
+  }
+
+  .cards-frame img {
+    max-height: 550px;
+  }
+
+  .card {
+    width: 300px;
+    height: 455px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 2500px;
+    border-radius: 30px;
+  }
+
+  .cover-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .wrapper {
+    transition: all 0.5s;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+    background: #000;
+    border-radius: 5px;
+  }
+  .wrapper img {
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
+      rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  }
+
+  .card:hover .wrapper {
+    box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+  }
+
+  .wrapper::before,
+  .wrapper::after {
+    content: "";
+    opacity: 0;
+    width: 100%;
+    height: 80px;
+    transition: all 0.5s;
+    border-radius: 5px;
+    position: absolute;
+    left: 0;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
+      □ rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  }
+  .wrapper::before {
+    top: 0;
+    height: 100%;
+    background-image: linear-gradient(
+      to top,
+      transparent 46%,
+      Orgba(12, 13, 19, 0.5) 68%,
+      ☐ rgba(12, 13, 19) 97%
+    );
+  }
+
+  .wrapper::after {
+    bottom: 0;
+    opacity: 1;
+    background-image: linear-gradient(
+      to bottom,
+      transparent 46%,
+      ☐ rgba(12, 13, 19, 0.5) 68%,
+      ☐ rgba(12, 13, 19) 97%
+    );
+  }
+
+  .card:hover .wrapper::before,
+  .wrapper::after {
+    opacity: 1;
+  }
+
+  .card:hover .cover-image {
+    opacity: 0.3;
+  }
+
+  .main-image {
+    width: 80%;
+    opacity: 0;
+    transition: all 0.5s;
+    filter: drop-shadow (2px 2px 2px #000);
+    position: absolute;
+    z-index: -1;
+    border-radius: 5px;
+  }
+
+  .card:hover .main-image {
+    opacity: 1;
+    transform: translate3d(12%, 0%, 700px);
+  }
+
+  .card {
+    display: none;
+  }
+
+  .card.visible {
+    display: block;
+  }
 }
 
 @media (min-width: 1280px) {
+  .printing-container-text {
+    max-width: 530px;
+  }
+
+  .book-animation {
+    min-width: 450px;
+  }
+
+  .printing-animation {
+    min-width: 350px;
+  }
+
+  .frame-side {
+    max-width: 500px;
+  }
+
   .margin {
     margin: 4rem 5rem;
   }
@@ -680,7 +876,7 @@ a {
 
   .printing-container {
     align-items: center;
-    gap: 1.875rem;
+    gap: 5rem;
   }
 
   .printing-container h1 {
@@ -707,12 +903,8 @@ a {
     max-width: 315px;
   }
 
-  .books-container img {
-    max-width: 440px;
-  }
-
   .books-container {
-    gap: 5.625rem;
+    gap: 2rem;
   }
 
   .map-container h1 {
@@ -743,15 +935,25 @@ a {
     font-weight: bold;
   }
 
-  .footer img {
-    max-height: 540px;
+  .museum-image {
+    max-width: 500px;
   }
 
   .content {
-    gap: 5rem;
+    gap: 10rem;
   }
 
   #info-box {
     max-width: 400px;
+  }
+
+  .books-overlay .content {
+    display: flex;
+    align-items: center;
+  }
+
+  .counter-container {
+    margin-top: 8rem;
+    margin-bottom: 8rem;
   }
 }

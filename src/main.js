@@ -2,6 +2,7 @@ import './style.css'
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import TextPlugin from 'gsap/TextPlugin';
+import lottie from 'lottie-web';
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(TextPlugin);
 
@@ -13,8 +14,8 @@ const exploreButton = document.querySelector("#explore-button");
 const closeButton = document.querySelector('.closing-button')
 const mobileClosingButton = document.querySelector('.mobile-closing-button')
 const booksOverlay = document.getElementById("books-overlay");
-const books = document.querySelectorAll(".carousel-image");
-const items = document.querySelectorAll(".items-list li");
+const listItems = document.querySelectorAll('.items-list li');
+const cards = document.querySelectorAll('.card');
 const countries = document.querySelectorAll(".available");
 const svgContainer = document.querySelector("#svg-container");
 const timelineWrapper = document.querySelector(".timeline-wrapper");
@@ -34,6 +35,8 @@ const timelineWidth = timeline.scrollWidth;
 const mm = gsap.matchMedia();
 const mobileBooksOverlay = document.querySelector("#mobile-books-overlay"); 
 const isMobile = () => window.matchMedia("(max-width: 833px)").matches;
+const printingAnimation = document.querySelector(".printing-animation");
+const bookAnimation = document.querySelector('.book-animation');
 const body = document.body;
 const booksInfo = [
   {
@@ -50,6 +53,7 @@ const booksInfo = [
   },
 ];
 
+
 const toggleMenu = () => {
   menuOverlay.classList.toggle('open');
   body.classList.toggle('no-scroll');
@@ -59,8 +63,26 @@ const closeMenu =() => {
   body.classList.remove('no-scroll');
 }
 
+lottie.loadAnimation({
+  container: printingAnimation,
+  renderer: "svg", 
+  loop: true, 
+  autoplay: true, 
+  path: "/src/animation/printing.json", 
+});
+
+
+lottie.loadAnimation({
+  container: bookAnimation,
+  renderer: "svg", 
+  loop: true, 
+  autoplay: true, 
+  path: "/src/animation/book.json", 
+});
+
 hamburger.addEventListener('click', toggleMenu);
 menuLinks.forEach(link => link.addEventListener('click', closeMenu));
+
 
 const animateCounter = (counter) => {
   const targetValue = +counter.dataset.value;
@@ -75,9 +97,8 @@ const animateCounter = (counter) => {
       scrollTrigger: {
         trigger: '.printing-container',
         start:"center center",
-        toggleActions: "play reset play reset",
+        toggleActions: 'restart none restart none',
       },
-      
       snap: { textContent: 1 },
     }
   );
@@ -92,7 +113,6 @@ const showBookOverlay = () => {
     booksOverlay.style.display = "flex";
   }
   body.classList.add('no-scroll');
-  setActiveImage(0); 
 }
 exploreButton.addEventListener('click', showBookOverlay);
 
@@ -109,18 +129,19 @@ const hideMobileBookOverlay = () => {
 }
 mobileClosingButton.addEventListener('click', hideMobileBookOverlay);
 
-function setActiveImage(index) {
-  books.forEach((img, i) => {
-    img.classList.toggle("active", i === index); 
-  });
-}
 
-items.forEach((item) => {
-  item.addEventListener("click", () => {
-    const imageIndex = parseInt(item.getAttribute("data-image-index"));
-    setActiveImage(imageIndex);
+listItems.forEach((item, index) => {
+  item.addEventListener('click', () => {
+    cards.forEach((card, cardIndex) => {
+      if (index === cardIndex) {
+        card.classList.add('visible'); 
+      } else {
+        card.classList.remove('visible');
+      }
+    });
   });
 });
+
 
 
 const countryData = {
@@ -203,7 +224,7 @@ mm.add("(max-width: 833px)", () => {
       end: () => `+=${timelineWidth}`,
       scrub: true,
       pin: ".timeline-container",
-    },
+        },
   });
 
   gsap.to(images, {
