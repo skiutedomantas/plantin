@@ -2,6 +2,7 @@ import './style.css'
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import TextPlugin from 'gsap/TextPlugin';
+import lottie from 'lottie-web';
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(TextPlugin);
 
@@ -33,6 +34,8 @@ const timelineWidth = timeline.scrollWidth;
 const mm = gsap.matchMedia();
 const mobileBooksOverlay = document.querySelector("#mobile-books-overlay"); 
 const isMobile = () => window.matchMedia("(max-width: 833px)").matches;
+const printingAnimation = document.querySelector(".printing-animation");
+const bookAnimation = document.querySelector('.book-animation');
 const body = document.body;
 const images = [
  '/src/assets/press1.png', 
@@ -54,6 +57,7 @@ const booksInfo = [
   },
 ];
 
+
 const toggleMenu = () => {
   menuOverlay.classList.toggle('open');
   body.classList.toggle('no-scroll');
@@ -63,8 +67,26 @@ const closeMenu =() => {
   body.classList.remove('no-scroll');
 }
 
+lottie.loadAnimation({
+  container: printingAnimation,
+  renderer: "svg", 
+  loop: true, 
+  autoplay: true, 
+  path: "/src/animation/printing.json", 
+});
+
+
+lottie.loadAnimation({
+  container: bookAnimation,
+  renderer: "svg", 
+  loop: true, 
+  autoplay: true, 
+  path: "/src/animation/book.json", 
+});
+
 hamburger.addEventListener('click', toggleMenu);
 menuLinks.forEach(link => link.addEventListener('click', closeMenu));
+
 
 const animateCounter = (counter) => {
   const targetValue = +counter.dataset.value;
@@ -79,9 +101,8 @@ const animateCounter = (counter) => {
       scrollTrigger: {
         trigger: '.printing-container',
         start:"center center",
-        toggleActions: "play reset play reset",
+        toggleActions: 'restart none restart none',
       },
-      
       snap: { textContent: 1 },
     }
   );
@@ -96,7 +117,6 @@ const showBookOverlay = () => {
     booksOverlay.style.display = "flex";
   }
   body.classList.add('no-scroll');
-  setActiveImage(0); 
 }
 exploreButton.addEventListener('click', showBookOverlay);
 
@@ -118,9 +138,9 @@ listItems.forEach((item, index) => {
   item.addEventListener('click', () => {
     cards.forEach((card, cardIndex) => {
       if (index === cardIndex) {
-        card.classList.add('visible'); // Show the corresponding card
+        card.classList.add('visible'); 
       } else {
-        card.classList.remove('visible'); // Hide others
+        card.classList.remove('visible');
       }
     });
   });
@@ -207,8 +227,8 @@ mm.add("(max-width: 833px)", () => {
       start: "top top",
       end: () => `+=${timelineWidth}`, 
       scrub: true,
-      pin: ".timeline-container", 
-    },
+      pin: ".timeline-container",
+        },
   });
 
 

@@ -281,16 +281,25 @@ a {
   fill: black;
 }
 
+.button-link {
+  background-color: #333331;
+  padding: 0.8rem 2rem;
+  border: none;
+  color: #f2efe9;
+}
+
 .hero-container img {
   transform: scaleX(-1);
 }
 
 .hero-container img,
-.printing-container img,
-.books-container img,
 .museum-image {
   max-width: 400px;
   width: 100%;
+}
+
+.museum-image {
+  margin-top: 2rem;
 }
 
 .hero-container,
@@ -387,6 +396,7 @@ a {
   top: 5%;
   left: 5%;
   width: 10%;
+  z-index: 2;
 }
 
 .left div {
@@ -400,7 +410,64 @@ a {
   box-shadow: rgba(0, 0, 0, 0.25) -10px 10px 20px;
 }
 
+.shadow-side {
+  box-shadow: rgba(0, 0, 0, 0.25) 10px 10px 20px;
+}
+
+.printing-animation {
+  max-width: 250px;
+}
+
+.book-animation {
+  max-width: 400px;
+}
+
+.printing-animation-container,
+.book-animation-container,
+.footer-container {
+  position: relative;
+  margin: 2.5rem 0;
+}
+
+.frame-side {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  max-width: 350px;
+}
+
 @media (min-width: 834px) {
+  .museum-image {
+    max-width: 400px;
+    margin-right: 2rem;
+  }
+  .printing-container-text {
+    max-width: 400px;
+  }
+  .printing-animation {
+    min-width: 250px;
+  }
+
+  .book-animation {
+    min-width: 340px;
+  }
+
+  .frame-side {
+    max-width: 350px;
+    transform: translate(-50%, -50%) rotate(90deg) scaleY(-1);
+  }
+
+  .wider-frame {
+    max-width: 380px;
+    transform: translate(-50%, -50%) rotate(90deg) scaleY(-1);
+  }
+
+  .not-rotated {
+    transform: translate(-50%, -50%);
+  }
+
   .hamburger {
     display: none;
   }
@@ -438,13 +505,11 @@ a {
   .hero-container {
     display: flex;
     flex-direction: row-reverse;
+    gap: 3rem;
   }
 
-  .hero-container img,
-  .printing-container img,
-  .books-container img,
-  .footer img {
-    min-width: 390px;
+  .hero-container img {
+    min-width: 300px;
   }
 
   h1 {
@@ -490,6 +555,8 @@ a {
   .printing-container,
   .books-container {
     flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
   }
   .counter-container {
     flex-direction: row;
@@ -592,175 +659,19 @@ a {
   #info-box h1 {
     color: #f2efe9;
   }
-}
-
-@media (min-width: 1280px) {
-  .margin {
-    margin: 4rem 5rem;
-  }
-
-  .paper-edge {
-    top: -4%;
-  }
-
-  .bottom {
-    bottom: -4%;
-  }
-
-  .higher {
-    top: -9%;
-  }
-
-  header {
-    padding: 1.2rem 5rem;
-  }
-  ul {
-    align-items: center;
-  }
-  ul button {
-    min-width: 10rem;
-  }
-
-  .hero-container div {
-    max-width: 465px;
-  }
-
-  .hero-container {
-    margin-top: 2rem;
-    gap: 9.375rem;
-    align-items: center;
-  }
-
-  h1 {
-    font-size: 2.4rem;
-  }
-
-  .hero-container img {
-    max-width: 400px;
-  }
-
-  .text {
-    width: 350px;
-  }
-
-  .timeline-item {
-    display: flex;
-    gap: 1.875rem;
-  }
-
-  .timeline-container {
-    gap: 3.75rem;
-  }
-
-  .timeline-container h1 {
-    max-width: 560px;
-    margin-bottom: 2rem;
-  }
-
-  .left img {
-    max-width: 495px;
-  }
-
-  h2 {
-    margin-top: 0.5rem;
-  }
-
-  .date {
-    max-width: 85px;
-  }
-
-  .printing-container {
-    align-items: center;
-    gap: 1.875rem;
-  }
-
-  .printing-container h1 {
-    max-width: 530px;
-  }
-
-  .printing-container p,
-  .books-container p {
-    max-width: 500px;
-  }
-
-  .printing-container img {
-    max-height: 590px;
-  }
-  .counter-container {
-    flex-wrap: nowrap;
-    gap: 18rem;
-  }
-
-  .books-container h1 {
-    max-width: 588px;
-  }
-  button {
-    max-width: 315px;
-  }
-
-  .books-container img {
-    max-width: 440px;
-  }
-
-  .books-container {
-    gap: 5.625rem;
-  }
-
-  .map-container h1 {
-    max-width: 735px;
-  }
-  .map-container p {
-    max-width: 620px;
-  }
-
-  .footer {
-    gap: 3.75rem;
-  }
-
-  .footer h1,
-  .footer p {
-    max-width: 482px;
-  }
-
-  .left div h2 {
-    font-family: "Inria Serif";
-    font-size: 3.125rem;
-    font-weight: bold;
-  }
-
-  .left div p {
-    font-family: "Inria Serif";
-    font-size: 1.25rem;
-    font-weight: bold;
-  }
-
-  .footer img {
-    max-height: 540px;
-  }
-
-  .content {
-    gap: 15rem;
-  }
-
-  #info-box {
-    max-width: 400px;
-  }
-
-  .books-overlay .content {
-    display: flex;
-    align-items: center;
-  }
 
   .card-container {
-    position: relative;
+    position: absolute;
+    top: 50%;
+    transform: translate(22%, -50%);
   }
 
   .cards-frame {
-    position: absolute;
-    max-height: 600px;
-    top: 15%;
-    right: 15%;
-    z-index: -1;
+    position: relative;
+  }
+
+  .cards-frame img {
+    max-height: 550px;
   }
 
   .card {
@@ -861,5 +772,180 @@ a {
 
   .card.visible {
     display: block;
+  }
+}
+
+@media (min-width: 1280px) {
+  .printing-container-text {
+    max-width: 530px;
+  }
+
+  .book-animation {
+    min-width: 450px;
+  }
+
+  .printing-animation {
+    min-width: 350px;
+  }
+
+  .frame-side {
+    max-width: 500px;
+  }
+
+  .margin {
+    margin: 4rem 5rem;
+  }
+
+  .paper-edge {
+    top: -4%;
+  }
+
+  .bottom {
+    bottom: -4%;
+  }
+
+  .higher {
+    top: -9%;
+  }
+
+  header {
+    padding: 1.2rem 5rem;
+  }
+  ul {
+    align-items: center;
+  }
+  ul button {
+    min-width: 10rem;
+  }
+
+  .hero-container div {
+    max-width: 465px;
+  }
+
+  .hero-container {
+    margin-top: 2rem;
+    gap: 9.375rem;
+    align-items: center;
+  }
+
+  h1 {
+    font-size: 2.4rem;
+  }
+
+  .hero-container img {
+    max-width: 400px;
+  }
+
+  .text {
+    width: 350px;
+  }
+
+  .timeline-item {
+    display: flex;
+    gap: 1.875rem;
+  }
+
+  .timeline-container {
+    gap: 3.75rem;
+  }
+
+  .timeline-container h1 {
+    max-width: 560px;
+    margin-bottom: 2rem;
+  }
+
+  .left img {
+    max-width: 495px;
+  }
+
+  h2 {
+    margin-top: 0.5rem;
+  }
+
+  .date {
+    max-width: 85px;
+  }
+
+  .printing-container {
+    align-items: center;
+    gap: 5rem;
+  }
+
+  .printing-container h1 {
+    max-width: 530px;
+  }
+
+  .printing-container p,
+  .books-container p {
+    max-width: 500px;
+  }
+
+  .printing-container img {
+    max-height: 590px;
+  }
+  .counter-container {
+    flex-wrap: nowrap;
+    gap: 18rem;
+  }
+
+  .books-container h1 {
+    max-width: 588px;
+  }
+  button {
+    max-width: 315px;
+  }
+
+  .books-container {
+    gap: 2rem;
+  }
+
+  .map-container h1 {
+    max-width: 735px;
+  }
+  .map-container p {
+    max-width: 620px;
+  }
+
+  .footer {
+    gap: 3.75rem;
+  }
+
+  .footer h1,
+  .footer p {
+    max-width: 482px;
+  }
+
+  .left div h2 {
+    font-family: "Inria Serif";
+    font-size: 3.125rem;
+    font-weight: bold;
+  }
+
+  .left div p {
+    font-family: "Inria Serif";
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+
+  .museum-image {
+    max-width: 500px;
+  }
+
+  .content {
+    gap: 10rem;
+  }
+
+  #info-box {
+    max-width: 400px;
+  }
+
+  .books-overlay .content {
+    display: flex;
+    align-items: center;
+  }
+
+  .counter-container {
+    margin-top: 8rem;
+    margin-bottom: 8rem;
   }
 }
