@@ -136,7 +136,7 @@ const showBookOverlay = () => {
   if (isMobile()) {
     mobileBooksOverlay.style.display = "flex";
   } else {
-    booksOverlay.style.display = "flex";
+    booksOverlay.classList.add('visible');
   }
   body.classList.add('no-scroll');
 }
@@ -144,7 +144,7 @@ exploreButton.addEventListener('click', showBookOverlay);
 
 
 const hideBookOverlay = () => {
-  booksOverlay.style.display = "none"; 
+  booksOverlay.classList.remove('visible'); 
   body.classList.remove('no-scroll');
 }
 closeButton.addEventListener('click', hideBookOverlay);
