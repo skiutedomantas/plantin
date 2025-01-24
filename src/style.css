@@ -329,16 +329,23 @@ a {
   height: 100%;
   z-index: 1000;
   background-color: #f2efe9;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
 }
 
 .mobile-carousel-container {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 2rem;
+  margin-top: 5rem;
+}
+
+.carousel-frame {
+  position: absolute;
+  width: 236px;
+  z-index: 2;
 }
 
 .mobile-carousel {
@@ -348,13 +355,24 @@ a {
   position: relative;
 }
 
-.mobile-carousel-image {
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
+.mobile-carousel img {
+  max-height: 300px;
 }
 
-.mobile-carousel-image.active {
+.carousel-image {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.carousel-image.visible {
   opacity: 1;
+  visibility: visible;
+}
+
+.carousel-image.hidden {
+  opacity: 0;
+  visibility: hidden;
 }
 
 .carousel-buttons {
@@ -589,7 +607,6 @@ a {
     height: 100%;
     background-color: #f2efe9;
     display: none;
-    justify-content: center;
     align-items: center;
     z-index: 1000;
   }
@@ -607,6 +624,7 @@ a {
     align-items: start;
     gap: 3rem;
     padding: 0;
+    max-width: 300px;
   }
 
   .items-list li {
@@ -653,7 +671,8 @@ a {
     position: relative;
   }
 
-  #info-box {
+  #info-box,
+  .book-info {
     position: absolute;
     right: 0;
     top: 40%;
@@ -662,6 +681,10 @@ a {
     color: #f2efe9;
     padding: 2rem;
     border-radius: 5px;
+  }
+
+  .book-info {
+    top: 35%;
   }
 
   #info-box h1 {
@@ -781,9 +804,20 @@ a {
   .card.visible {
     display: block;
   }
+
+  .books-overlay {
+    justify-content: normal;
+  }
 }
 
 @media (min-width: 1280px) {
+  .items-list ul {
+    max-width: fit-content;
+  }
+  .items-list {
+    margin-left: 5rem;
+    margin-right: 5rem;
+  }
   .printing-container-text {
     max-width: 530px;
   }
@@ -940,16 +974,17 @@ a {
   }
 
   .content {
-    gap: 10rem;
+    gap: 5rem;
   }
 
   #info-box {
     max-width: 400px;
   }
 
-  .books-overlay .content {
+  .books-overlay {
     display: flex;
     align-items: center;
+    justify-content: center;
   }
 
   .counter-container {

@@ -20,7 +20,7 @@ const countries = document.querySelectorAll(".available");
 const svgContainer = document.querySelector("#svg-container");
 const timelineWrapper = document.querySelector(".timeline-wrapper");
 const timeline = document.querySelector(".timeline");
-const mobileCarouselImage = document.querySelector(".mobile-carousel img");
+const mobileCarouselImage = document.querySelectorAll(".mobile-carousel img");
 const mobileBookTitle = document.querySelector(".mobile-book-title");
 const mobileBookDescription = document.querySelector(".mobile-book-description");
 const prevButton = document.querySelector(".carousel-btn.prev");
@@ -37,6 +37,7 @@ const mobileBooksOverlay = document.querySelector("#mobile-books-overlay");
 const isMobile = () => window.matchMedia("(max-width: 833px)").matches;
 const printingAnimation = document.querySelector(".printing-animation");
 const bookAnimation = document.querySelector('.book-animation');
+const bookInfoContainer = document.querySelector(".book-info")
 const body = document.body;
 const booksInfo = [
   {
@@ -52,7 +53,32 @@ const booksInfo = [
     description: "This legal text was a major work on canon law, showcasing Plantin’s role in publishing works of intellectual and societal importance.",
   },
 ];
-
+const countryData = {
+  Spain: {
+    title: "Spain",
+    description: "Plantin’s Polyglot Bible had a big impact in Spain, especially among religious groups. His books played a role in the religious debates during the Counter-Reformation and helped spread Catholic beliefs.",
+  },
+  Italy: {
+    title: "Italy",
+    description: "Plantin’s books, especially his typefaces, influenced the printing style in Italy. His work with fonts, especially Garamond, helped shape how printing looked in Italy during the 16th century.",
+  },
+  England: {
+    title: "England",
+    description: "Plantin’s scientific books influenced English scholars and the development of science. His books about astronomy and nature helped spread important knowledge in England.",
+  },
+  France: {
+    title: "France",
+    description: "Plantin’s typefaces and scholarly books had a strong effect in France, especially in the church and royal circles. His books, like the Polyglot Bible, spread important ideas in France.",
+  },
+  Germany: {
+    title: "Germany",
+    description: "Plantin’s Polyglot Bible and other works influenced German scholars during the Reformation. His books helped shape debates about religion and philosophy in Germany.",
+  },
+  Netherlands: {
+    title: "Netherlands",
+    description: "Plantin’s work had a huge influence in his own country, the Netherlands. His books helped shape intellectual thought, especially during the Dutch Revolt.",
+  },
+};
 
 const toggleMenu = () => {
   menuOverlay.classList.toggle('open');
@@ -139,38 +165,16 @@ listItems.forEach((item, index) => {
         card.classList.remove('visible');
       }
     });
+    const book = booksInfo[index];
+    bookInfoContainer.innerHTML = book.description;
+
+    gsap.fromTo(
+      bookInfoContainer, 
+      { x: 50, opacity: 0 }, 
+      { x: 0, opacity: 1, duration: 1, ease: "power2.out" }
+    );
   });
 });
-
-
-
-const countryData = {
-  Spain: {
-    title: "Spain",
-    description: "Plantin’s Polyglot Bible had a big impact in Spain, especially among religious groups. His books played a role in the religious debates during the Counter-Reformation and helped spread Catholic beliefs.",
-  },
-  Italy: {
-    title: "Italy",
-    description: "Plantin’s books, especially his typefaces, influenced the printing style in Italy. His work with fonts, especially Garamond, helped shape how printing looked in Italy during the 16th century.",
-  },
-  England: {
-    title: "England",
-    description: "Plantin’s scientific books influenced English scholars and the development of science. His books about astronomy and nature helped spread important knowledge in England.",
-  },
-  France: {
-    title: "France",
-    description: "Plantin’s typefaces and scholarly books had a strong effect in France, especially in the church and royal circles. His books, like the Polyglot Bible, spread important ideas in France.",
-  },
-  Germany: {
-    title: "Germany",
-    description: "Plantin’s Polyglot Bible and other works influenced German scholars during the Reformation. His books helped shape debates about religion and philosophy in Germany.",
-  },
-  Netherlands: {
-    title: "Netherlands",
-    description: "Plantin’s work had a huge influence in his own country, the Netherlands. His books helped shape intellectual thought, especially during the Dutch Revolt.",
-  },
-};
-
 
 const showInfo = (event) => {
   const countryName = event.target.dataset.country;
@@ -272,10 +276,9 @@ mm.add("(min-width: 834px)", () => {
     },
   });
 
-
   images.forEach((_, index) => {
     timeline.to('.left', {
-      y: `${movementStep * 0.7 * (index + 1)}px`, 
+      y: `${movementStep * 0.75 * (index + 1)}px`, 
       ease: "linear",
     })
     .call(() => {
@@ -301,8 +304,15 @@ mm.add("(min-width: 834px)", () => {
 });
 
 const updateMobileCarousel = (index) => {
-  const imagePath = `src/assets/press${index + 1}.png`;
-  mobileCarouselImage.src = imagePath;
+  mobileCarouselImage.forEach((image, i) => {
+    if (i === index) {
+      image.classList.add("visible");
+      image.classList.remove("hidden");
+    } else {
+      image.classList.add("hidden");
+      image.classList.remove("visible");
+    }
+  });
 
   mobileBookTitle.textContent = booksInfo[index].title;
   mobileBookDescription.textContent = booksInfo[index].description;
@@ -312,7 +322,6 @@ const updateMobileCarousel = (index) => {
     dot.classList.toggle("active", i === index);
   });
 };
-
 prevButton.addEventListener("click", () => {
   currentIndex = (currentIndex - 1 + booksInfo.length) % booksInfo.length; 
   updateMobileCarousel(currentIndex);

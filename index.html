@@ -227,47 +227,65 @@
       <div id="books-overlay" class="books-overlay">
         <div class="paper-overlay"></div>
         <button class="closing-button"></button>
-        <div class="content">
-          <div class="items-list">
-            <ul>
-              <li>Biblia Polyglotta</li>
-              <li>Hebrew Bible</li>
-              <li>Corpus Juris Canonici</li>
-            </ul>
+        <div class="items-list">
+          <ul>
+            <li>Biblia Polyglotta</li>
+            <li>Hebrew Bible</li>
+            <li>Corpus Juris Canonici</li>
+          </ul>
+        </div>
+        <div class="cards">
+          <div class="cards-frame">
+            <img class="shadow" src="src/assets/frame.png" alt="" />
           </div>
-          <div class="cards">
-            <div class="cards-frame">
-              <img class="shadow" src="src/assets/frame.png" alt="" />
+          <div class="card-container">
+            <div class="card visible">
+              <div class="wrapper">
+                <img src="src/assets/script1.jpg" class="cover-image" />
+              </div>
+              <img src="src/assets/script1_main.jpg" class="main-image" />
             </div>
-            <div class="card-container">
-              <div class="card visible">
-                <div class="wrapper">
-                  <img src="src/assets/script1.jpg" class="cover-image" />
-                </div>
-                <img src="src/assets/script1.jpg" class="main-image" />
+            <div class="card">
+              <div class="wrapper">
+                <img src="src/assets/script2.png" class="cover-image" />
               </div>
-              <div class="card">
-                <div class="wrapper">
-                  <img src="src/assets/script2.png" class="cover-image" />
-                </div>
-                <img src="src/assets/script2.png" class="main-image" />
+              <img src="src/assets/script2_main.jpg" class="main-image" />
+            </div>
+            <div class="card">
+              <div class="wrapper">
+                <img src="src/assets/script3.png" class="cover-image" />
               </div>
-              <div class="card">
-                <div class="wrapper">
-                  <img src="src/assets/script3.png" class="cover-image" />
-                </div>
-                <img src="src/assets/script3.png" class="main-image" />
-              </div>
+              <img src="src/assets/script3_main.jpg" class="main-image" />
             </div>
           </div>
+        </div>
+        <div class="book-info">
+          Printed between 1568 and 1572, this eight-volume work featured the
+          Bible in multiple languages, including Hebrew, Greek, Latin, and
+          Aramaic. It was a masterpiece of Renaissance scholarship and a key
+          tool for biblical studies.
         </div>
       </div>
       <div id="mobile-books-overlay" class="mobile-books-overlay">
         <div class="paper-overlay"></div>
         <button class="mobile-closing-button"></button>
         <div class="mobile-carousel-container">
+          <div class="carousel-frame">
+            <img class="shadow" src="src/assets/frame.png" alt="" />
+          </div>
           <div class="mobile-carousel">
-            <img src="src/assets/script1.jpg" />
+            <img
+              src="src/assets/script1_main.jpg"
+              class="carousel-image visible"
+            />
+            <img
+              src="src/assets/script2_main.jpg"
+              class="carousel-image hidden"
+            />
+            <img
+              src="src/assets/script3_main.jpg"
+              class="carousel-image hidden"
+            />
           </div>
           <div class="carousel-buttons">
             <button class="carousel-btn prev">←</button>
