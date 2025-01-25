@@ -7,8 +7,13 @@
   </head>
   <body>
     <header>
-      <img class="logo" src="src/assets/logo.svg" width="80" alt="" />
-      <img class="hamburger" src="src/assets/burger.svg" alt="" />
+      <img
+        class="logo"
+        src="src/assets/logo.svg"
+        width="80"
+        alt="Museum Plantin-Moretus logo"
+      />
+      <img class="hamburger" src="src/assets/burger.svg" alt="menu icon" />
       <nav>
         <ul>
           <li><a href="#home">Home</a></li>
@@ -42,7 +47,18 @@
     </div>
     <main>
       <div id="home" class="hero-container margin">
-        <img class="shadow" src="src/assets/hero.jpg" alt="" />
+        <picture>
+          <source
+            class="shadow"
+            srcset="src/assets/webp/hero.webp"
+            type="image/webp"
+          />
+          <img
+            class="shadow"
+            src="src/assets/hero.jpg"
+            alt="Christophe Plantin"
+          />
+        </picture>
         <div>
           <h1>Every big dream starts with a small step.</h1>
           <p>
@@ -62,7 +78,7 @@
       </div>
       <div id="timeline" class="timeline-container">
         <div class="paper-edge">
-          <img src="src/assets/paper.svg" alt="" />
+          <img src="src/assets/paper.svg" alt="paper edge" />
         </div>
         <div class="background"></div>
         <div class="right margin">
@@ -151,9 +167,34 @@
             <h2>0</h2>
             <p>Printing presses</p>
           </div>
-          <img src="./src/assets/press1.png" alt="" />
-          <img class="hidden" src="./src/assets/press2.png" alt="" />
-          <img class="hidden" src="./src/assets/printing-press-3.png" alt="" />
+          <picture>
+            <source src="src/assets/webp/press1.webp" type="image/webp" />
+            <img src="./src/assets/press1.png" alt="Printing press" />
+          </picture>
+          <picture>
+            <source
+              class="hidden"
+              src="src/assets/webp/press2.webp"
+              type="image/webp"
+            />
+            <img
+              class="hidden"
+              src="./src/assets/press2.png"
+              alt="2 printing presses"
+            />
+          </picture>
+          <picture>
+            <source
+              class="hidden"
+              src="src/assets/webp/printing-press-3.webp"
+              type="image/webp"
+            />
+            <img
+              class="hidden"
+              src="./src/assets/printing-press-3.png"
+              alt="3 printing presses"
+            />
+          </picture>
         </div>
         <div class="paper-edge reverse bottom">
           <img src="./src/assets/paper.svg" alt="" />
@@ -174,11 +215,18 @@
           </p>
         </div>
         <div class="printing-animation-container">
-          <img
-            class="frame-side shadow-side"
-            src="src/assets/frame_side.png"
-            alt=""
-          />
+          <picture>
+            <source
+              class="frame-side shadow-side"
+              src="src/assets/webp/frame_side.webp"
+              type="image/webp"
+            />
+            <img
+              class="frame-side shadow-side"
+              src="src/assets/frame_side.png"
+              alt="Golden frame"
+            />
+          </picture>
           <div class="printing-animation"></div>
         </div>
       </div>
@@ -198,14 +246,21 @@
       </div>
       <div id="book" class="books-container margin">
         <div class="book-animation-container">
-          <img
-            class="frame-side wider-frame shadow-side"
-            src="src/assets/frame_side.png"
-            alt=""
-          />
+          <picture>
+            <source
+              class="frame-side wider-frame shadow-side"
+              src="src/assets/webp/frame_side.webp"
+              type="image/webp"
+            />
+            <img
+              class="frame-side wider-frame shadow-side"
+              src="src/assets/frame_side.png"
+              alt="Golden frame"
+            />
+          </picture>
           <div class="book-animation"></div>
         </div>
-        <div>
+        <div class="books-container-info">
           <h1>
             Books that changed minds and inspired ideas – Plantin’s printing
             shaped the world.
@@ -236,26 +291,103 @@
         </div>
         <div class="cards">
           <div class="cards-frame">
-            <img class="shadow" src="src/assets/frame.png" alt="" />
+            <picture>
+              <source
+                class="shadow"
+                src="src/assets/webp/frame.webp"
+                type="image/webp"
+              />
+              <img
+                class="shadow"
+                src="src/assets/frame.png"
+                alt="Golden frame"
+              />
+            </picture>
           </div>
           <div class="card-container">
             <div class="card visible">
               <div class="wrapper">
-                <img src="src/assets/script1.jpg" class="cover-image" />
+                <picture>
+                  <source
+                    class="cover-image"
+                    src="src/assets/webp/script1.webp"
+                    type="image/webp"
+                  />
+                  <img
+                    src="src/assets/script1.jpg"
+                    class="cover-image"
+                    alt="Biblia Polyglotta"
+                  />
+                </picture>
               </div>
-              <img src="src/assets/script1_main.jpg" class="main-image" />
+              <picture>
+                <source
+                  src="src/assets/webp/script1_main.webp"
+                  class="main-image"
+                  type="image/webp"
+                />
+                <img
+                  src="src/assets/script1_main.jpg"
+                  class="main-image"
+                  alt="Biblia Polyglotta"
+                />
+              </picture>
             </div>
             <div class="card">
               <div class="wrapper">
-                <img src="src/assets/script2.png" class="cover-image" />
+                <picture>
+                  <source
+                    src="src/assets/webp/script2.webp"
+                    class="cover-image"
+                    type="image/webp"
+                  />
+                  <img
+                    src="src/assets/script2.png"
+                    class="cover-image"
+                    alt="Hebrew Bible"
+                  />
+                </picture>
               </div>
-              <img src="src/assets/script2_main.jpg" class="main-image" />
+              <picture>
+                <source
+                  src="src/assets/webp/script2_main.webp"
+                  class="main-image"
+                  type="image/webp"
+                />
+                <img
+                  src="src/assets/script2_main.jpg"
+                  class="main-image"
+                  alt="Hebrew Bible"
+                />
+              </picture>
             </div>
             <div class="card">
               <div class="wrapper">
-                <img src="src/assets/script3.png" class="cover-image" />
+                <picture>
+                  <source
+                    src="src/assets/webp/script3.webp"
+                    class="cover-image"
+                    type="image/webp"
+                  />
+                  <img
+                    src="src/assets/script3.png"
+                    class="cover-image"
+                    alt="Corpus Juris Canonici"
+                  />
+                </picture>
               </div>
-              <img src="src/assets/script3_main.jpg" class="main-image" />
+              <picture>
+                <source
+                  src="src/assets/webp/script3_main.webp"
+                  class="main-image"
+                  type="image/webp"
+                />
+                <img
+                  src="src/assets/script3_main.jpg"
+                  class="main-image"
+                  alt="Corpus Juris Canonici"
+                />
+              </picture>
             </div>
           </div>
         </div>
@@ -271,21 +403,56 @@
         <button class="mobile-closing-button"></button>
         <div class="mobile-carousel-container">
           <div class="carousel-frame">
-            <img class="shadow" src="src/assets/frame.png" alt="" />
+            <picture>
+              <source
+                src="src/assets/webp/frame.webp"
+                class="shadow"
+                type="image/webp"
+              />
+              <img
+                class="shadow"
+                src="src/assets/frame.png"
+                alt="Golden frame"
+              />
+            </picture>
           </div>
           <div class="mobile-carousel">
-            <img
-              src="src/assets/script1_main.jpg"
-              class="carousel-image visible"
-            />
-            <img
-              src="src/assets/script2_main.jpg"
-              class="carousel-image hidden"
-            />
-            <img
-              src="src/assets/script3_main.jpg"
-              class="carousel-image hidden"
-            />
+            <picture>
+              <source
+                src="src/assets/webp/script1_main.webp"
+                class="carousel-image visible"
+                type="image/webp"
+              />
+              <img
+                src="src/assets/script1_main.jpg"
+                class="carousel-image visible"
+                alt="Biblia Polyglotta"
+              />
+            </picture>
+            <picture>
+              <source
+                src="src/assets/webp/script2_main.webp"
+                class="carousel-image hidden"
+                type="image/webp"
+              />
+              <img
+                src="src/assets/script2_main.jpg"
+                class="carousel-image hidden"
+                alt="Hebrew Bible"
+              />
+            </picture>
+            <picture>
+              <source
+                src="src/assets/webp/script3_main.webp"
+                class="carousel-image hidden"
+                type="image/webp"
+              />
+              <img
+                src="src/assets/script3_main.jpg"
+                class="carousel-image hidden"
+                alt="Corpus Juris Canonici"
+              />
+            </picture>
           </div>
           <div class="carousel-buttons">
             <button class="carousel-btn prev">←</button>
@@ -531,15 +698,22 @@
       </div>
       <div id="museum" class="footer">
         <div class="paper-edge higher">
-          <img src="src/assets/paper.svg" alt="" />
+          <img src="src/assets/paper.svg" alt="Paper edge" />
         </div>
         <div class="background"></div>
-        <img
-          class="museum-image shadow-side"
-          src="src/assets/museum.jpg"
-          alt=""
-        />
-        <div class="margin">
+        <picture>
+          <source
+            src="src/assets/webp/museum.webp"
+            class="museum-image shadow-side"
+            type="image/webp"
+          />
+          <img
+            class="museum-image shadow-side"
+            src="src/assets/museum.jpg"
+            alt="Museum Plantin-Moretus"
+          />
+        </picture>
+        <div class="footer-info margin">
           <h1>Where printing history lives</h1>
           <p>
             The heart of Plantin’s success was his printing presses. Two of

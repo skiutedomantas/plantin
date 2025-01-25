@@ -300,14 +300,14 @@ a {
   transform: scaleX(-1);
 }
 
-.hero-container img,
-.museum-image {
+.hero-container img {
   max-width: 400px;
   width: 100%;
 }
 
 .museum-image {
   margin-top: 2rem;
+  max-width: 300px;
 }
 
 .hero-container,
@@ -425,11 +425,21 @@ a {
   z-index: 2;
 }
 
+.left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .left div {
   gap: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.left img {
+  max-width: 320px;
 }
 
 .shadow {
@@ -441,7 +451,8 @@ a {
 }
 
 .printing-animation {
-  max-width: 250px;
+  width: 200px;
+  max-width: 350px;
 }
 
 .book-animation {
@@ -461,10 +472,16 @@ a {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 10;
-  max-width: 350px;
+  min-width: 270px;
 }
 
 @media (min-width: 834px) {
+  .right h1 {
+    max-width: 600px;
+  }
+  .hero-container div {
+    max-width: 465px;
+  }
   .museum-image {
     max-width: 400px;
     margin-right: 2rem;
@@ -486,7 +503,7 @@ a {
   }
 
   .wider-frame {
-    max-width: 380px;
+    max-width: 450px;
     transform: translate(-50%, -50%) rotate(90deg) scaleY(-1);
   }
 
@@ -554,6 +571,10 @@ a {
     height: fit-content;
   }
 
+  .left img {
+    max-width: 495px;
+  }
+
   .timeline-wrapper {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
@@ -569,7 +590,7 @@ a {
   .timeline-container {
     display: flex;
     flex-direction: row-reverse;
-    justify-content: center;
+    justify-content: normal;
   }
 
   .timeline {
@@ -584,6 +605,15 @@ a {
     justify-content: center;
     gap: 2rem;
   }
+
+  .books-container-info {
+    max-width: 600px;
+  }
+
+  .footer-info {
+    max-width: 600px;
+  }
+
   .counter-container {
     flex-direction: row;
     flex-wrap: wrap;
