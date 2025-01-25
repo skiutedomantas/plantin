@@ -31,7 +31,6 @@ const images = document.querySelectorAll('.left img');
 const containerHeight = timelineContainer.offsetHeight;
 const movementStep = containerHeight / 3;
 let currentIndex = 0;
-const timelineWidth = timeline.scrollWidth;
 const mm = gsap.matchMedia();
 const mobileBooksOverlay = document.querySelector("#mobile-books-overlay"); 
 const isMobile = () => window.matchMedia("(max-width: 833px)").matches;
@@ -218,90 +217,90 @@ countries.forEach((country) => {
   country.addEventListener("click", showInfo);
 });
 
-mm.add("(max-width: 833px)", () => {
-  gsap.to(timeline, {
-    x: () => -(timelineWidth - window.innerWidth + 100),
-    ease: "none",
-    scrollTrigger: {
-      trigger: timelineWrapper,
-      start: "top top",
-      end: () => `+=${timelineWidth}`,
-      scrub: true,
-      pin: ".timeline-container",
-        },
-  });
+window.addEventListener("load", () => {
+  const timelineWidth = timelineWrapper.scrollWidth;
 
-  gsap.to(images, {
-    scrollTrigger: {
-      trigger: timelineWrapper,
-      start: "top top",
-      end: () => `+=${timelineWidth}`,
-      scrub: true,
-      onUpdate: (self) => {
-        const progress = self.progress;
-        const index = Math.floor(progress * (images.length - 1));
-
-        images.forEach((img, i) => {
-          if (i === index) {
-            img.classList.add("visible");
-            img.classList.remove("hidden");
-          } else {
-            img.classList.add("hidden");
-            img.classList.remove("visible");
-          }
-        });
+  mm.add("(max-width: 833px)", () => {
+    gsap.to(timeline, {
+      x: () => -(timelineWidth - window.innerWidth + 100),
+      ease: "none",
+      scrollTrigger: {
+        trigger: timelineWrapper,
+        start: "top top",
+        end: () => `+=${timelineWidth}`,
+        scrub: true,
+        pin: ".timeline-container",
       },
-    },
-  });
+    });
 
-  gsap.to(".left h2", {
-    textContent: 22,
-    roundProps: "textContent",
-    scrollTrigger: {
-      trigger: timelineWrapper,
-      start: "top top",
-      end: () => `+=${timelineWidth}`,
-      scrub: true,
-    },
-  });
-});
+    gsap.to(images, {
+      scrollTrigger: {
+        trigger: timelineWrapper,
+        start: "top top",
+        end: () => `+=${timelineWidth}`,
+        scrub: true,
+        onUpdate: (self) => {
+          const index = Math.floor(self.progress * (images.length - 1));
+          images.forEach((img, i) => {
+            img.classList.toggle("visible", i === index);
+            img.classList.toggle("hidden", i !== index);
+          });
+        },
+      },
+    });
 
-mm.add("(min-width: 834px)", () => {
-  const timeline = gsap.timeline({
-    scrollTrigger: {
-      trigger: '.timeline-container',
-      start: "top top",
-      end: "bottom bottom",
-      scrub: true,
-    },
-  });
-
-  images.forEach((_, index) => {
-    timeline.to('.left', {
-      y: `${movementStep * 0.75 * (index + 1)}px`, 
-      ease: "linear",
-    })
-    .call(() => {
-      images.forEach((img, imgIndex) => {
-        img.classList.toggle('visible', imgIndex === index);
-        img.classList.toggle('hidden', imgIndex !== index);
-      });
+    gsap.to(".left h2", {
+      textContent: 22,
+      roundProps: "textContent",
+      scrollTrigger: {
+        trigger: timelineWrapper,
+        start: "top top",
+        end: `+=${timelineWidth}`,
+        scrub: true,
+      },
     });
   });
 
-  gsap.to('.left h2', {
-    scrollTrigger: {
-      trigger: '.timeline-container',
-      start: "top top",
-      end: "bottom bottom",
-      scrub: true,
-      onUpdate: (self) => {
-        const value = Math.round(self.progress * 22);
-        document.querySelector('.left h2').textContent = value;
+  mm.add("(min-width: 834px)", () => {
+    const timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".timeline-container",
+        start: "top top",
+        end: "bottom bottom",
+        scrub: true,
       },
-    },
+    });
+
+    images.forEach((_, index) => {
+      timeline.to(".left", {
+        y: `${movementStep * 0.75 * (index + 1)}px`,
+        ease: "linear",
+      }).call(() => {
+        images.forEach((img, imgIndex) => {
+          img.classList.toggle("visible", imgIndex === index);
+          img.classList.toggle("hidden", imgIndex !== index);
+        });
+      });
+    });
+
+    gsap.to(".left h2", {
+      scrollTrigger: {
+        trigger: ".timeline-container",
+        start: "top top",
+        end: "bottom bottom",
+        scrub: true,
+        onUpdate: (self) => {
+          document.querySelector(".left h2").textContent = Math.round(
+            self.progress * 22
+          );
+        },
+      },
+    });
   });
+
+  ScrollTrigger.refresh();
 });
+
 
 const updateMobileCarousel = (index) => {
   mobileCarouselImage.forEach((image, i) => {
