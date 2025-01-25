@@ -838,6 +838,10 @@ a {
   .books-overlay {
     justify-content: normal;
   }
+
+  .visible {
+    display: flex;
+  }
 }
 
 @media (min-width: 1280px) {

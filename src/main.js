@@ -37,6 +37,7 @@ const isMobile = () => window.matchMedia("(max-width: 833px)").matches;
 const printingAnimation = document.querySelector(".printing-animation");
 const bookAnimation = document.querySelector('.book-animation');
 const bookInfoContainer = document.querySelector(".book-info")
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const body = document.body;
 const booksInfo = [
   {
@@ -88,46 +89,55 @@ const closeMenu =() => {
   body.classList.remove('no-scroll');
 }
 
-lottie.loadAnimation({
-  container: printingAnimation,
-  renderer: "svg", 
-  loop: true, 
-  autoplay: true, 
-  path: new URL('./animation/printing.json', import.meta.url).href,
-});
-
-
-lottie.loadAnimation({
-  container: bookAnimation,
-  renderer: "svg", 
-  loop: true, 
-  autoplay: true, 
-  path: new URL('./animation/book.json', import.meta.url).href,
-});
-
 hamburger.addEventListener('click', toggleMenu);
 menuLinks.forEach(link => link.addEventListener('click', closeMenu));
 
 
+const printingAnim = lottie.loadAnimation({
+  container: printingAnimation,
+  renderer: "svg",
+  loop: true,
+  autoplay: !prefersReducedMotion,
+  path: new URL('./animation/printing.json', import.meta.url).href,
+});
+
+const bookAnim = lottie.loadAnimation({
+  container: bookAnimation,
+  renderer: "svg",
+  loop: true,
+  autoplay: !prefersReducedMotion,
+  path: new URL('./animation/book.json', import.meta.url).href,
+});
+
+if (prefersReducedMotion) {
+  printingAnim.goToAndStop(0, true);
+  bookAnim.goToAndStop(0, true);    
+}
+
 const animateCounter = (counter) => {
   const targetValue = +counter.dataset.value;
-  
-  gsap.fromTo(
-    counter,
-    { textContent: 0 },
-    {
-      textContent: targetValue,
-      duration: 2,
-      ease: "power1.out",
-      scrollTrigger: {
-        trigger: '.printing-container',
-        start:"center center",
-        toggleActions: 'restart none restart none',
-      },
-      snap: { textContent: 1 },
-    }
-  );
-}; 
+
+  if (!prefersReducedMotion) {
+    gsap.fromTo(
+      counter,
+      { textContent: 0 },
+      {
+        textContent: targetValue,
+        duration: 2,
+        ease: "power1.out",
+        scrollTrigger: {
+          trigger: '.printing-container',
+          start: "center center",
+          toggleActions: 'restart none restart none',
+        },
+        snap: { textContent: 1 },
+      }
+    );
+  } else {
+    counter.textContent = targetValue;
+  }
+};
+
  counters.forEach(counter => animateCounter(counter));
 
 

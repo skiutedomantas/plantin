@@ -50,12 +50,23 @@
         <picture>
           <source
             class="shadow"
-            srcset="src/assets/webp/hero.webp"
+            sizes="(min-width: 1020px) 400px, (min-width: 840px) calc(62.5vw - 225px), (min-width: 500px) 400px, calc(80vw + 16px)"
+            srcset="
+              src/assets/webp/hero_y3akfh_c_scale,w_300.webp 300w,
+              src/assets/webp/hero_y3akfh_c_scale,w_621.webp 621w,
+              src/assets/webp/hero_y3akfh_c_scale,w_800.webp 800w
+            "
             type="image/webp"
           />
           <img
             class="shadow"
-            src="src/assets/hero.jpg"
+            sizes="(min-width: 1000px) 400px, (min-width: 840px) calc(71.43vw - 300px), (min-width: 480px) 400px, calc(90vw - 14px)"
+            srcset="
+              src/assets/hero_ylpfuo_c_scale,w_300.jpg 300w,
+              src/assets/hero_ylpfuo_c_scale,w_590.jpg 590w,
+              src/assets/hero_ylpfuo_c_scale,w_800.jpg 800w
+            "
+            src="src/assets/hero_ylpfuo_c_scale,w_590.jpg"
             alt="Christophe Plantin"
           />
         </picture>
@@ -168,30 +179,72 @@
             <p>Printing presses</p>
           </div>
           <picture>
-            <source src="src/assets/webp/press1.webp" type="image/webp" />
-            <img src="./src/assets/press1.png" alt="Printing press" />
+            <source
+              class="visible"
+              sizes="(min-width: 840px) 495px, (min-width: 400px) 320px, calc(25vw + 225px)"
+              srcset="
+                src/assets/webp/press1_af8ndg_c_scale,w_320.webp 320w,
+                src/assets/webp/press1_af8ndg_c_scale,w_616.webp 616w,
+                src/assets/webp/press1_af8ndg_c_scale,w_850.webp 850w
+              "
+              type="image/webp"
+            />
+            <img
+              class="visible"
+              sizes="(min-width: 840px) 495px, (min-width: 400px) 320px, calc(25vw + 225px)"
+              srcset="
+                src/assets/press1_vtghkj_c_scale,w_320.png 320w,
+                src/assets/press1_vtghkj_c_scale,w_573.png 573w,
+                src/assets/press1_vtghkj_c_scale,w_850.png 850w
+              "
+              src="src/assets/press1_vtghkj_c_scale,w_573.png"
+              alt="Printing press"
+            />
           </picture>
+
           <picture>
             <source
               class="hidden"
-              src="src/assets/webp/press2.webp"
+              sizes="(min-width: 840px) 495px, (min-width: 400px) 320px, calc(25vw + 225px)"
+              srcset="
+                src/assets/webp/press2_ybnhwq_c_scale,w_320.webp 320w,
+                src/assets/webp/press2_ybnhwq_c_scale,w_627.webp 627w,
+                src/assets/webp/press2_ybnhwq_c_scale,w_850.webp 850w
+              "
               type="image/webp"
             />
             <img
               class="hidden"
-              src="./src/assets/press2.png"
+              sizes="(min-width: 840px) 495px, (min-width: 400px) 320px, calc(25vw + 225px)"
+              srcset="
+                src/assets/press2_dsn18p_c_scale,w_320.png 320w,
+                src/assets/press2_dsn18p_c_scale,w_582.png 582w,
+                src/assets/press2_dsn18p_c_scale,w_850.png 850w
+              "
+              src="src/assets/press2_dsn18p_c_scale,w_582.png"
               alt="2 printing presses"
             />
           </picture>
           <picture>
             <source
               class="hidden"
-              src="src/assets/webp/printing-press-3.webp"
+              sizes="(min-width: 840px) 495px, (min-width: 400px) 320px, calc(25vw + 225px)"
+              srcset="
+                src/assets/webp/printing-press-3_kud0at_c_scale,w_320.webp 320w,
+                src/assets/webp/printing-press-3_kud0at_c_scale,w_575.webp 575w,
+                src/assets/webp/printing-press-3_kud0at_c_scale,w_850.webp 850w
+              "
               type="image/webp"
             />
             <img
               class="hidden"
-              src="./src/assets/printing-press-3.png"
+              sizes="(min-width: 840px) 495px, (min-width: 400px) 320px, calc(25vw + 225px)"
+              srcset="
+                src/assetsprinting-press-3_mtfl3q_c_scale,w_320.png 320w,
+                src/assetsprinting-press-3_mtfl3q_c_scale,w_567.png 567w,
+                src/assetsprinting-press-3_mtfl3q_c_scale,w_850.png 850w
+              "
+              src="src/assetsprinting-press-3_mtfl3q_c_scale,w_567.png"
               alt="3 printing presses"
             />
           </picture>
@@ -218,12 +271,22 @@
           <picture>
             <source
               class="frame-side shadow-side"
-              src="src/assets/webp/frame_side.webp"
+              sizes="(min-width: 1280px) 500px, (min-width: 840px) 350px, 270px"
+              srcset="
+                src/assets/webp/frame_side_wcvlqp_c_scale,w_276.webp   276w,
+                src/assets/webp/frame_side_wcvlqp_c_scale,w_1000.webp 1000w
+              "
               type="image/webp"
             />
             <img
               class="frame-side shadow-side"
-              src="src/assets/frame_side.png"
+              sizes="(min-width: 1280px) 500px, (min-width: 840px) 350px, 270px"
+              srcset="
+                src/assets/frame_side_cellux_c_scale,w_276.png   276w,
+                src/assets/frame_side_cellux_c_scale,w_710.png   710w,
+                src/assets/frame_side_cellux_c_scale,w_1000.png 1000w
+              "
+              src="src/assets/frame_side_cellux_c_scale,w_710.png"
               alt="Golden frame"
             />
           </picture>
@@ -249,12 +312,22 @@
           <picture>
             <source
               class="frame-side wider-frame shadow-side"
-              src="src/assets/webp/frame_side.webp"
+              sizes="(min-width: 1280px) 500px, (min-width: 840px) 350px, 270px"
+              srcset="
+                src/assets/webp/frame_side_wcvlqp_c_scale,w_276.webp   276w,
+                src/assets/webp/frame_side_wcvlqp_c_scale,w_1000.webp 1000w
+              "
               type="image/webp"
             />
             <img
               class="frame-side wider-frame shadow-side"
-              src="src/assets/frame_side.png"
+              sizes="(min-width: 1280px) 500px, (min-width: 840px) 350px, 270px"
+              srcset="
+                src/assets/frame_side_cellux_c_scale,w_276.png   276w,
+                src/assets/frame_side_cellux_c_scale,w_710.png   710w,
+                src/assets/frame_side_cellux_c_scale,w_1000.png 1000w
+              "
+              src="src/assets/frame_side_cellux_c_scale,w_710.png"
               alt="Golden frame"
             />
           </picture>
@@ -294,12 +367,22 @@
             <picture>
               <source
                 class="shadow"
-                src="src/assets/webp/frame.webp"
+                sizes="(max-width: 866px) 100vw, 866px"
+                srcset="
+                  src/assets/webp/frame_nxk3jy_c_scale,w_236.webp 236w,
+                  src/assets/webp/frame_nxk3jy_c_scale,w_866.webp 866w
+                "
                 type="image/webp"
               />
               <img
                 class="shadow"
-                src="src/assets/frame.png"
+                sizes="(max-width: 866px) 100vw, 866px"
+                srcset="
+                  src/assets/frame_as2bvb_c_scale,w_236.png 236w,
+                  src/assets/frame_as2bvb_c_scale,w_613.png 613w,
+                  src/assets/frame_as2bvb_c_scale,w_866.png 866w
+                "
+                src="src/assets/frame_as2bvb_c_scale,w_613.png"
                 alt="Golden frame"
               />
             </picture>
@@ -310,11 +393,22 @@
                 <picture>
                   <source
                     class="cover-image"
-                    src="src/assets/webp/script1.webp"
+                    sizes="(max-width: 600px) 100vw, 600px"
+                    srcset="
+                      src/assets/webp/script1_gsudoj_c_scale,w_300.webp 300w,
+                      src/assets/webp/script1_gsudoj_c_scale,w_434.webp 434w,
+                      src/assets/webp/script1_gsudoj_c_scale,w_600.webp 600w
+                    "
                     type="image/webp"
                   />
                   <img
-                    src="src/assets/script1.jpg"
+                    sizes="(max-width: 600px) 100vw, 600px"
+                    srcset="
+                      src/assets/script1_aylsel_c_scale,w_300.jpg 300w,
+                      src/assets/script1_aylsel_c_scale,w_461.jpg 461w,
+                      src/assets/script1_aylsel_c_scale,w_600.jpg 600w
+                    "
+                    src="src/assets/script1_aylsel_c_scale,w_461.jpg"
                     class="cover-image"
                     alt="Biblia Polyglotta"
                   />
@@ -322,12 +416,23 @@
               </div>
               <picture>
                 <source
-                  src="src/assets/webp/script1_main.webp"
+                  sizes="(max-width: 600px) 100vw, 600px"
+                  srcset="
+                    src/assets/webp/script1_main_c5kuee_c_scale,w_300.webp 300w,
+                    src/assets/webp/script1_main_c5kuee_c_scale,w_421.webp 421w,
+                    src/assets/webp/script1_main_c5kuee_c_scale,w_600.webp 600w
+                  "
                   class="main-image"
                   type="image/webp"
                 />
                 <img
-                  src="src/assets/script1_main.jpg"
+                  sizes="(max-width: 600px) 100vw, 600px"
+                  srcset="
+                    src/assets/script1_main_ssszff_c_scale,w_300.jpg 300w,
+                    src/assets/script1_main_ssszff_c_scale,w_432.jpg 432w,
+                    src/assets/script1_main_ssszff_c_scale,w_600.jpg 600w
+                  "
+                  src="src/assets/script1_main_ssszff_c_scale,w_432.jpg"
                   class="main-image"
                   alt="Biblia Polyglotta"
                 />
@@ -337,12 +442,23 @@
               <div class="wrapper">
                 <picture>
                   <source
-                    src="src/assets/webp/script2.webp"
+                    sizes="(max-width: 600px) 100vw, 600px"
+                    srcset="
+                      src/assets/webp/script2_hvw6zm_c_scale,w_300.webp 300w,
+                      src/assets/webp/script2_hvw6zm_c_scale,w_406.webp 406w,
+                      src/assets/webp/script2_hvw6zm_c_scale,w_600.webp 600w
+                    "
                     class="cover-image"
                     type="image/webp"
                   />
                   <img
-                    src="src/assets/script2.png"
+                    sizes="(max-width: 600px) 100vw, 600px"
+                    srcset="
+                      src/assets/script2_xyd75x_c_scale,w_300.jpg 300w,
+                      src/assets/script2_xyd75x_c_scale,w_456.jpg 456w,
+                      src/assets/script2_xyd75x_c_scale,w_600.jpg 600w
+                    "
+                    src="src/assets/script2_xyd75x_c_scale,w_456.jpg"
                     class="cover-image"
                     alt="Hebrew Bible"
                   />
@@ -350,12 +466,23 @@
               </div>
               <picture>
                 <source
-                  src="src/assets/webp/script2_main.webp"
+                  sizes="(max-width: 600px) 100vw, 600px"
+                  srcset="
+                    src/assets/webp/script2_main_klnw08_c_scale,w_300.webp 300w,
+                    src/assets/webp/script2_main_klnw08_c_scale,w_406.webp 406w,
+                    src/assets/webp/script2_main_klnw08_c_scale,w_600.webp 600w
+                  "
                   class="main-image"
                   type="image/webp"
                 />
                 <img
-                  src="src/assets/script2_main.jpg"
+                  sizes="(max-width: 600px) 100vw, 600px"
+                  srcset="
+                    src/assets/script2_main_j1lcdd_c_scale,w_300.jpg 300w,
+                    src/assets/script2_main_j1lcdd_c_scale,w_419.jpg 419w,
+                    src/assets/script2_main_j1lcdd_c_scale,w_600.jpg 600w
+                  "
+                  src="src/assets/script2_main_j1lcdd_c_scale,w_419.jpg"
                   class="main-image"
                   alt="Hebrew Bible"
                 />
@@ -365,12 +492,23 @@
               <div class="wrapper">
                 <picture>
                   <source
-                    src="src/assets/webp/script3.webp"
+                    sizes="(max-width: 600px) 100vw, 600px"
+                    srcset="
+                      src/assets/webp/script3_vijqiz_c_scale,w_300.webp 300w,
+                      src/assets/webp/script3_vijqiz_c_scale,w_432.webp 432w,
+                      src/assets/webp/script3_vijqiz_c_scale,w_600.webp 600w
+                    "
                     class="cover-image"
                     type="image/webp"
                   />
                   <img
-                    src="src/assets/script3.png"
+                    sizes="(max-width: 600px) 100vw, 600px"
+                    srcset="
+                      src/assets/script3_y96rmz_c_scale,w_300.jpg 300w,
+                      src/assets/script3_y96rmz_c_scale,w_460.jpg 460w,
+                      src/assets/script3_y96rmz_c_scale,w_600.jpg 600w
+                    "
+                    src="src/assets/script3_y96rmz_c_scale,w_460.jpg"
                     class="cover-image"
                     alt="Corpus Juris Canonici"
                   />
@@ -378,12 +516,23 @@
               </div>
               <picture>
                 <source
-                  src="src/assets/webp/script3_main.webp"
+                  sizes="(max-width: 600px) 100vw, 600px"
+                  srcset="
+                    src/assets/webp/script3_main_kwkfiy_c_scale,w_300.webp 300w,
+                    src/assets/webp/script3_main_kwkfiy_c_scale,w_413.webp 413w,
+                    src/assets/webp/script3_main_kwkfiy_c_scale,w_600.webp 600w
+                  "
                   class="main-image"
                   type="image/webp"
                 />
                 <img
-                  src="src/assets/script3_main.jpg"
+                  sizes="(max-width: 600px) 100vw, 600px"
+                  srcset="
+                    src/assets/script3_main_jl379b_c_scale,w_300.jpg 300w,
+                    src/assets/script3_main_jl379b_c_scale,w_410.jpg 410w,
+                    src/assets/script3_main_jl379b_c_scale,w_600.jpg 600w
+                  "
+                  src="src/assets/script3_main_jl379b_c_scale,w_410.jpg"
                   class="main-image"
                   alt="Corpus Juris Canonici"
                 />
@@ -405,13 +554,23 @@
           <div class="carousel-frame">
             <picture>
               <source
-                src="src/assets/webp/frame.webp"
+                sizes="(max-width: 866px) 100vw, 866px"
+                srcset="
+                  src/assets/webp/frame_nxk3jy_c_scale,w_236.webp 236w,
+                  src/assets/webp/frame_nxk3jy_c_scale,w_866.webp 866w
+                "
                 class="shadow"
                 type="image/webp"
               />
               <img
                 class="shadow"
-                src="src/assets/frame.png"
+                sizes="(max-width: 866px) 100vw, 866px"
+                srcset="
+                  src/assets/frame_as2bvb_c_scale,w_236.png 236w,
+                  src/assets/frame_as2bvb_c_scale,w_613.png 613w,
+                  src/assets/frame_as2bvb_c_scale,w_866.png 866w
+                "
+                src="src/assets/frame_as2bvb_c_scale,w_613.png"
                 alt="Golden frame"
               />
             </picture>
@@ -419,19 +578,35 @@
           <div class="mobile-carousel">
             <picture>
               <source
-                src="src/assets/webp/script1_main.webp"
+                sizes="(max-width: 600px) 100vw, 600px"
+                srcset="
+                  src/assets/webp/script1_main_c5kuee_c_scale,w_300.webp 300w,
+                  src/assets/webp/script1_main_c5kuee_c_scale,w_421.webp 421w,
+                  src/assets/webp/script1_main_c5kuee_c_scale,w_600.webp 600w
+                "
                 class="carousel-image visible"
                 type="image/webp"
               />
               <img
-                src="src/assets/script1_main.jpg"
+                sizes="(max-width: 600px) 100vw, 600px"
+                srcset="
+                  src/assets/script1_main_ssszff_c_scale,w_300.jpg 300w,
+                  src/assets/script1_main_ssszff_c_scale,w_432.jpg 432w,
+                  src/assets/script1_main_ssszff_c_scale,w_600.jpg 600w
+                "
+                src="src/assets/script1_main_ssszff_c_scale,w_432.jpg"
                 class="carousel-image visible"
                 alt="Biblia Polyglotta"
               />
             </picture>
             <picture>
               <source
-                src="src/assets/webp/script2_main.webp"
+                sizes="(max-width: 600px) 100vw, 600px"
+                srcset="
+                  src/assets/webp/script2_main_klnw08_c_scale,w_300.webp 300w,
+                  src/assets/webp/script2_main_klnw08_c_scale,w_406.webp 406w,
+                  src/assets/webp/script2_main_klnw08_c_scale,w_600.webp 600w
+                "
                 class="carousel-image hidden"
                 type="image/webp"
               />
@@ -443,12 +618,23 @@
             </picture>
             <picture>
               <source
-                src="src/assets/webp/script3_main.webp"
+                sizes="(max-width: 600px) 100vw, 600px"
+                srcset="
+                  src/assets/webp/script3_main_kwkfiy_c_scale,w_300.webp 300w,
+                  src/assets/webp/script3_main_kwkfiy_c_scale,w_413.webp 413w,
+                  src/assets/webp/script3_main_kwkfiy_c_scale,w_600.webp 600w
+                "
                 class="carousel-image hidden"
                 type="image/webp"
               />
               <img
-                src="src/assets/script3_main.jpg"
+                sizes="(max-width: 600px) 100vw, 600px"
+                srcset="
+                  src/assets/script3_main_jl379b_c_scale,w_300.jpg 300w,
+                  src/assets/script3_main_jl379b_c_scale,w_410.jpg 410w,
+                  src/assets/script3_main_jl379b_c_scale,w_600.jpg 600w
+                "
+                src="src/assets/script3_main_jl379b_c_scale,w_410.jpg"
                 class="carousel-image hidden"
                 alt="Corpus Juris Canonici"
               />
@@ -703,13 +889,24 @@
         <div class="background"></div>
         <picture>
           <source
-            src="src/assets/webp/museum.webp"
+            sizes="(min-width: 1280px) 500px, (min-width: 840px) 400px, 300px"
+            srcset="
+              src/assets/webp/museum_j0l6eb_c_scale,w_300.webp   300w,
+              src/assets/webp/museum_j0l6eb_c_scale,w_578.webp   578w,
+              src/assets/webp/museum_j0l6eb_c_scale,w_1000.webp 1000w
+            "
             class="museum-image shadow-side"
             type="image/webp"
           />
           <img
             class="museum-image shadow-side"
-            src="src/assets/museum.jpg"
+            sizes="(min-width: 1280px) 500px, (min-width: 840px) 400px, 300px"
+            srcset="
+              src/assets/museum_sicugo_c_scale,w_300.jpg   300w,
+              src/assets/museum_sicugo_c_scale,w_583.jpg   583w,
+              src/assets/museum_sicugo_c_scale,w_1000.jpg 1000w
+            "
+            src="src/assets/museum_sicugo_c_scale,w_583.jpg"
             alt="Museum Plantin-Moretus"
           />
         </picture>
