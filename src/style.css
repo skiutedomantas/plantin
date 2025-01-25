@@ -443,20 +443,11 @@ a {
 }
 
 .shadow {
-  box-shadow: rgba(0, 0, 0, 0.25) -10px 10px 20px;
+  box-shadow: rgba(0, 0, 0, 0.2) -5px 5px 15px;
 }
 
 .shadow-side {
-  box-shadow: rgba(0, 0, 0, 0.25) 10px 10px 20px;
-}
-
-.printing-animation {
-  width: 200px;
-  max-width: 350px;
-}
-
-.book-animation {
-  max-width: 400px;
+  box-shadow: rgba(0, 0, 0, 0.2) 5px 5px 15px;
 }
 
 .printing-animation-container,
@@ -466,13 +457,21 @@ a {
   margin: 2.5rem 0;
 }
 
+.book-animation {
+  max-width: 550px;
+}
+
+.printing-animation {
+  max-width: 350px;
+}
+
 .frame-side {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 10;
-  min-width: 270px;
+  display: none;
+}
+
+.animation {
+  opacity: 0;
+  transform: translateY(50px);
 }
 
 @media (min-width: 834px) {
@@ -489,16 +488,19 @@ a {
   .printing-container-text {
     max-width: 400px;
   }
-  .printing-animation {
-    min-width: 250px;
-  }
 
   .book-animation {
-    min-width: 340px;
+    min-width: 400px;
   }
 
   .frame-side {
-    max-width: 350px;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    min-width: 500px;
     transform: translate(-50%, -50%) rotate(90deg) scaleY(-1);
   }
 
@@ -813,7 +815,6 @@ a {
   }
 
   .main-image {
-    width: 80%;
     opacity: 0;
     transition: all 0.5s;
     filter: drop-shadow (2px 2px 2px #000);
@@ -824,7 +825,7 @@ a {
 
   .card:hover .main-image {
     opacity: 1;
-    transform: translate3d(12%, 0%, 700px);
+    transform: translate3d(5%, -5%, 700px);
   }
 
   .card {
@@ -845,6 +846,14 @@ a {
 }
 
 @media (min-width: 1280px) {
+  .shadow {
+    box-shadow: rgba(0, 0, 0, 0.25) -10px 10px 20px;
+  }
+
+  .shadow-side {
+    box-shadow: rgba(0, 0, 0, 0.25) 10px 10px 20px;
+  }
+
   .items-list ul {
     max-width: fit-content;
   }
@@ -856,12 +865,12 @@ a {
     max-width: 530px;
   }
 
-  .book-animation {
-    min-width: 450px;
-  }
-
   .printing-animation {
     min-width: 350px;
+  }
+
+  .book-animation {
+    max-width: 450px;
   }
 
   .frame-side {

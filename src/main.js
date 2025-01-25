@@ -30,15 +30,18 @@ const timelineContainer = document.querySelector('.right');
 const images = document.querySelectorAll('.left img');
 const containerHeight = timelineContainer.offsetHeight;
 const movementStep = containerHeight / 3;
+const timelineWidth = timelineWrapper.scrollWidth;
 let currentIndex = 0;
 const mm = gsap.matchMedia();
 const mobileBooksOverlay = document.querySelector("#mobile-books-overlay"); 
-const isMobile = () => window.matchMedia("(max-width: 833px)").matches;
 const printingAnimation = document.querySelector(".printing-animation");
 const bookAnimation = document.querySelector('.book-animation');
 const bookInfoContainer = document.querySelector(".book-info")
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const body = document.body;
+const isMobile = () => window.matchMedia("(max-width: 833px)").matches;
+const triggerElement = isMobile() ? '.map-container' : '.printing-container';
+const animationContainers = document.querySelectorAll('.animation');
 const booksInfo = [
   {
     title: "Biblia Polyglotta",
@@ -83,15 +86,16 @@ const countryData = {
 const toggleMenu = () => {
   menuOverlay.classList.toggle('open');
   body.classList.toggle('no-scroll');
-}
+};
+
+hamburger.addEventListener('click', toggleMenu);
+
 const closeMenu =() => {
   menuOverlay.classList.remove('open');
   body.classList.remove('no-scroll');
-}
+};
 
-hamburger.addEventListener('click', toggleMenu);
 menuLinks.forEach(link => link.addEventListener('click', closeMenu));
-
 
 const printingAnim = lottie.loadAnimation({
   container: printingAnimation,
@@ -109,13 +113,14 @@ const bookAnim = lottie.loadAnimation({
   path: new URL('./animation/book.json', import.meta.url).href,
 });
 
-if (prefersReducedMotion) {
+const stopLotties = () => {if (prefersReducedMotion) {
   printingAnim.goToAndStop(0, true);
   bookAnim.goToAndStop(0, true);    
-}
+}};
 
 const animateCounter = (counter) => {
   const targetValue = +counter.dataset.value;
+
 
   if (!prefersReducedMotion) {
     gsap.fromTo(
@@ -126,9 +131,10 @@ const animateCounter = (counter) => {
         duration: 2,
         ease: "power1.out",
         scrollTrigger: {
-          trigger: '.printing-container',
+          trigger: triggerElement,
           start: "center center",
           toggleActions: 'restart none restart none',
+          markers: true,
         },
         snap: { textContent: 1 },
       }
@@ -137,9 +143,7 @@ const animateCounter = (counter) => {
     counter.textContent = targetValue;
   }
 };
-
  counters.forEach(counter => animateCounter(counter));
-
 
 const showBookOverlay = () => {
   if (isMobile()) {
@@ -148,42 +152,46 @@ const showBookOverlay = () => {
     booksOverlay.classList.add('visible');
   }
   body.classList.add('no-scroll');
-}
-exploreButton.addEventListener('click', showBookOverlay);
+};
 
+exploreButton.addEventListener('click', showBookOverlay);
 
 const hideBookOverlay = () => {
   booksOverlay.classList.remove('visible'); 
   body.classList.remove('no-scroll');
-}
+};
+
 closeButton.addEventListener('click', hideBookOverlay);
 
 const hideMobileBookOverlay = () => {
   mobileBooksOverlay.style.display = "none"; 
   body.classList.remove('no-scroll');
-}
+};
+
 mobileClosingButton.addEventListener('click', hideMobileBookOverlay);
 
 
-listItems.forEach((item, index) => {
-  item.addEventListener('click', () => {
-    cards.forEach((card, cardIndex) => {
-      if (index === cardIndex) {
-        card.classList.add('visible'); 
-      } else {
-        card.classList.remove('visible');
-      }
-    });
-    const book = booksInfo[index];
-    bookInfoContainer.innerHTML = book.description;
+const bookNavigation = () => {
+  listItems.forEach((item, index) => {
+    item.addEventListener('click', () => {
+      cards.forEach((card, cardIndex) => {
+        if (index === cardIndex) {
+          card.classList.add('visible'); 
+        } else {
+          card.classList.remove('visible');
+        }
+      });
+      const book = booksInfo[index];
+      bookInfoContainer.innerHTML = book.description;
 
-    gsap.fromTo(
-      bookInfoContainer, 
-      { x: 50, opacity: 0 }, 
-      { x: 0, opacity: 1, duration: 1, ease: "power2.out" }
-    );
+      gsap.fromTo(
+        bookInfoContainer, 
+        { x: 50, opacity: 0 }, 
+        { x: 0, opacity: 1, duration: 1, ease: "power2.out" }
+      );
+    });
   });
-});
+};
 
 const showInfo = (event) => {
   const countryName = event.target.dataset.country;
@@ -227,9 +235,7 @@ countries.forEach((country) => {
   country.addEventListener("click", showInfo);
 });
 
-window.addEventListener("load", () => {
-  const timelineWidth = timelineWrapper.scrollWidth;
-
+const mobileTimeline = () => {
   mm.add("(max-width: 833px)", () => {
     gsap.to(timeline, {
       x: () => -(timelineWidth - window.innerWidth + 100),
@@ -270,48 +276,47 @@ window.addEventListener("load", () => {
       },
     });
   });
+};
 
-  mm.add("(min-width: 834px)", () => {
-    const timeline = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".timeline-container",
-        start: "top top",
-        end: "bottom bottom",
-        scrub: true,
-      },
-    });
-
-    images.forEach((_, index) => {
-      timeline.to(".left", {
-        y: `${movementStep * 0.75 * (index + 1)}px`,
-        ease: "linear",
-      }).call(() => {
-        images.forEach((img, imgIndex) => {
-          img.classList.toggle("visible", imgIndex === index);
-          img.classList.toggle("hidden", imgIndex !== index);
+const dekstopTimeline = () => {
+    mm.add("(min-width: 834px)", () => {
+      const timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".timeline-container",
+          start: "top top",
+          end: "bottom bottom",
+          scrub: true,
+        },
+      });
+  
+      images.forEach((_, index) => {
+        timeline.to(".left", {
+          y: `${movementStep * 0.75 * (index + 1)}px`,
+          ease: "linear",
+        }).call(() => {
+          images.forEach((img, imgIndex) => {
+            img.classList.toggle("visible", imgIndex === index);
+            img.classList.toggle("hidden", imgIndex !== index);
+          });
         });
       });
-    });
-
-    gsap.to(".left h2", {
-      scrollTrigger: {
-        trigger: ".timeline-container",
-        start: "top top",
-        end: "bottom bottom",
-        scrub: true,
-        onUpdate: (self) => {
-          document.querySelector(".left h2").textContent = Math.round(
-            self.progress * 22
-          );
+  
+      gsap.to(".left h2", {
+        scrollTrigger: {
+          trigger: ".timeline-container",
+          start: "top top",
+          end: "bottom bottom",
+          scrub: true,
+          onUpdate: (self) => {
+            document.querySelector(".left h2").textContent = Math.round(
+              self.progress * 22
+            );
+          },
         },
-      },
+      });
     });
-  });
-
-  ScrollTrigger.refresh();
-});
-
-
+};
+  
 const updateMobileCarousel = (index) => {
   mobileCarouselImage.forEach((image, i) => {
     if (i === index) {
@@ -331,6 +336,7 @@ const updateMobileCarousel = (index) => {
     dot.classList.toggle("active", i === index);
   });
 };
+
 prevButton.addEventListener("click", () => {
   currentIndex = (currentIndex - 1 + booksInfo.length) % booksInfo.length; 
   updateMobileCarousel(currentIndex);
@@ -355,5 +361,47 @@ const createProgressDots = () => {
   });
 };
 
-createProgressDots();
-updateMobileCarousel(currentIndex);
+const animateText = (element) => {
+  gsap.to(element, {
+    opacity: 1,
+    y: 0,
+    duration: 1,
+    ease: "power2.out"
+  });
+  
+};
+
+const initTextAnimation = () => {
+  const observer = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateText(entry.target);
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      root: null,
+      threshold: 0,
+      rootMargin: "0px 0px -100px 0px",
+    }
+  );
+
+  animationContainers.forEach((el) => observer.observe(el));
+};
+
+const init = () => {
+  bookNavigation();
+  mobileTimeline();
+  dekstopTimeline();
+  createProgressDots();
+  updateMobileCarousel(currentIndex);
+  initTextAnimation();
+  stopLotties();
+};
+
+init();
+
+
+
