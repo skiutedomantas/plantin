@@ -43,6 +43,8 @@ const isMobile = () => window.matchMedia("(max-width: 833px)").matches;
 const triggerElement = isMobile() ? '.map-container' : '.printing-container';
 const animationContainers = document.querySelectorAll('.animation');
 const spanContainer = document.querySelectorAll(".golden-background"); 
+const loadingScreen = document.querySelector(".loading-screen");
+const loadingCircle = document.querySelector(".loading-circle");
 
 const booksInfo = [
   {
@@ -84,6 +86,26 @@ const countryData = {
     description: "Plantin’s work had a huge influence in his own country, the Netherlands. His books helped shape intellectual thought, especially during the Dutch Revolt.",
   },
 };
+
+const loadingAnimation = () => {
+  gsap.to(loadingCircle, {
+    rotation: 360,
+    repeat: -1,
+    duration: 1,
+    ease: "linear",
+  });
+  
+  setTimeout(() => {
+    gsap.to(loadingScreen, {
+      opacity: 0,
+      duration: 0.5,
+      onComplete: () => {
+        loadingScreen.style.display = "none";
+        body.classList.remove('no-scroll');
+      },
+    });
+  }, 3000);
+}
 
 const toggleMenu = () => {
   menuOverlay.classList.toggle('open');
@@ -394,7 +416,7 @@ const initTextAnimation = () => {
 
 const animateGoldenEffect = (element) => {
   gsap.to(element, {
-    color: "#8d6404",
+    color: "#deb351",
     duration: 0.5,
     ease: "power2.out",
   });
@@ -430,6 +452,7 @@ const init = () => {
   initTextAnimation();
   initGoldenEffect();
   stopLotties();
+  loadingAnimation();
 };
 
 init();
