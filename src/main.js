@@ -42,6 +42,8 @@ const body = document.body;
 const isMobile = () => window.matchMedia("(max-width: 833px)").matches;
 const triggerElement = isMobile() ? '.map-container' : '.printing-container';
 const animationContainers = document.querySelectorAll('.animation');
+const spanContainer = document.querySelectorAll(".golden-background"); 
+
 const booksInfo = [
   {
     title: "Biblia Polyglotta",
@@ -390,6 +392,35 @@ const initTextAnimation = () => {
   animationContainers.forEach((el) => observer.observe(el));
 };
 
+const animateGoldenEffect = (element) => {
+  gsap.to(element, {
+    color: "#deb351",
+    duration: 0.5,
+    ease: "power2.out",
+  });
+};
+
+  const initGoldenEffect = () => {
+    const goldenObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animateGoldenEffect(entry.target);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        root: null,
+        threshold: 0,
+        rootMargin: "0px 0px -40% 0px",
+      }
+    );
+  
+    spanContainer.forEach((container) => goldenObserver.observe(container));
+  };
+  
+
 const init = () => {
   bookNavigation();
   mobileTimeline();
@@ -397,6 +428,7 @@ const init = () => {
   createProgressDots();
   updateMobileCarousel(currentIndex);
   initTextAnimation();
+  initGoldenEffect();
   stopLotties();
 };
 
