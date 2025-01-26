@@ -134,7 +134,6 @@ const animateCounter = (counter) => {
           trigger: triggerElement,
           start: "center center",
           toggleActions: 'restart none restart none',
-          markers: true,
         },
         snap: { textContent: 1 },
       }
