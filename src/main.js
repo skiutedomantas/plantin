@@ -394,7 +394,7 @@ const initTextAnimation = () => {
 
 const animateGoldenEffect = (element) => {
   gsap.to(element, {
-    color: "#deb351",
+    color: "#8d6404",
     duration: 0.5,
     ease: "power2.out",
   });
